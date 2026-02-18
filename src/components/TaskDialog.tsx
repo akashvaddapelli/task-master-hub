@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { ClipboardList, Flag, CalendarDays, Type, AlignLeft } from "lucide-react";
+import { Flag, CalendarDays, Type, AlignLeft, Rocket } from "lucide-react";
 
 interface TaskDialogProps {
   open: boolean;
@@ -39,18 +39,20 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-xl md:max-w-2xl w-[95vw] shadow-theme-xl rounded-xl p-0 overflow-hidden animate-scale-in">
-        {/* Header with gradient */}
-        <div className="bg-primary/5 border-b px-6 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-5">
+      <DialogContent className="sm:max-w-xl md:max-w-2xl w-[95vw] shadow-theme-xl rounded-2xl p-0 overflow-hidden animate-bounce-in border-2 border-primary/20">
+        {/* Fun header */}
+        <div className="bg-gradient-to-r from-primary/10 via-secondary/30 to-accent/10 border-b-2 border-primary/10 px-6 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-5">
           <DialogHeader>
             <div className="flex items-center gap-3 mb-1">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <ClipboardList className="h-5 w-5 text-primary" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 shadow-theme-sm">
+                <span className="text-2xl">{task ? "✏️" : "🚀"}</span>
               </div>
               <div>
-                <DialogTitle className="text-xl sm:text-2xl font-bold">{task ? "Edit Task" : "Create New Task"}</DialogTitle>
-                <DialogDescription className="text-sm mt-0.5">
-                  {task ? "Update the details of your task below." : "Fill in the details to create a new task."}
+                <DialogTitle className="text-xl sm:text-2xl font-bold">
+                  {task ? "Edit Mission!" : "New Mission!"}
+                </DialogTitle>
+                <DialogDescription className="text-sm mt-0.5 font-medium">
+                  {task ? "Update your mission details below~ 📝" : "What's your next adventure? Let's go! 💪"}
                 </DialogDescription>
               </div>
             </div>
@@ -60,9 +62,9 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
         <form onSubmit={handleSubmit} className="px-6 py-5 sm:px-8 sm:py-6 space-y-5 sm:space-y-6">
           {/* Title */}
           <div className="space-y-2">
-            <Label htmlFor="title" className="text-sm font-semibold flex items-center gap-2">
-              <Type className="h-4 w-4 text-muted-foreground" />
-              Task Title
+            <Label htmlFor="title" className="text-sm font-bold flex items-center gap-2">
+              <Type className="h-4 w-4 text-primary" />
+              Mission Name ✨
             </Label>
             <Input
               id="title"
@@ -70,90 +72,82 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What needs to be done?"
               required
-              className="h-12 text-base shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
+              className="h-12 text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
             />
           </div>
 
           {/* Description */}
           <div className="space-y-2">
-            <Label htmlFor="description" className="text-sm font-semibold flex items-center gap-2">
-              <AlignLeft className="h-4 w-4 text-muted-foreground" />
-              Description
+            <Label htmlFor="description" className="text-sm font-bold flex items-center gap-2">
+              <AlignLeft className="h-4 w-4 text-primary" />
+              Details 📋
             </Label>
             <Textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Add more details about this task…"
+              placeholder="Add more details about this mission…"
               rows={5}
-              className="text-base shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200 resize-none"
+              className="text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200 resize-none"
             />
           </div>
 
           {/* Priority & Due Date */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-2">
-              <Label className="text-sm font-semibold flex items-center gap-2">
-                <Flag className="h-4 w-4 text-muted-foreground" />
-                Priority
+              <Label className="text-sm font-bold flex items-center gap-2">
+                <Flag className="h-4 w-4 text-primary" />
+                Priority Level 🎯
               </Label>
               <Select value={priority} onValueChange={(v) => setPriority(v as "low" | "medium" | "high")}>
-                <SelectTrigger className="h-12 text-base shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
+                <SelectTrigger className="h-12 text-base rounded-xl border-2 shadow-theme-sm hover:shadow-theme-md transition-all duration-200">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="shadow-theme-lg">
-                  <SelectItem value="low" className="py-3 cursor-pointer">
-                    <span className="flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-success" />
-                      Low Priority
-                    </span>
+                <SelectContent className="shadow-theme-lg rounded-xl">
+                  <SelectItem value="low" className="py-3 cursor-pointer rounded-lg">
+                    <span className="flex items-center gap-2">😌 Chill~</span>
                   </SelectItem>
-                  <SelectItem value="medium" className="py-3 cursor-pointer">
-                    <span className="flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-warning" />
-                      Medium Priority
-                    </span>
+                  <SelectItem value="medium" className="py-3 cursor-pointer rounded-lg">
+                    <span className="flex items-center gap-2">😤 Let's Do It!</span>
                   </SelectItem>
-                  <SelectItem value="high" className="py-3 cursor-pointer">
-                    <span className="flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-destructive" />
-                      High Priority
-                    </span>
+                  <SelectItem value="high" className="py-3 cursor-pointer rounded-lg">
+                    <span className="flex items-center gap-2">🔥 URGENT!</span>
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="due_date" className="text-sm font-semibold flex items-center gap-2">
-                <CalendarDays className="h-4 w-4 text-muted-foreground" />
-                Due Date
+              <Label htmlFor="due_date" className="text-sm font-bold flex items-center gap-2">
+                <CalendarDays className="h-4 w-4 text-primary" />
+                Deadline 📅
               </Label>
               <Input
                 id="due_date"
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="h-12 text-base shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
+                className="h-12 text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
               />
             </div>
           </div>
 
           {/* Footer */}
-          <DialogFooter className="pt-4 border-t gap-3 sm:gap-3">
+          <DialogFooter className="pt-4 border-t-2 border-primary/10 gap-3 sm:gap-3">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="h-11 px-6 text-base hover-lift press-effect"
+              className="h-11 px-6 text-base rounded-full border-2 hover-lift press-effect"
             >
-              Cancel
+              Nah, Later 😴
             </Button>
             <Button
               type="submit"
               disabled={loading || !title.trim()}
-              className="h-11 px-8 text-base hover-glow press-effect"
+              className="h-11 px-8 text-base rounded-full hover-glow press-effect shadow-theme-md"
             >
-              {loading ? "Saving…" : task ? "Update Task" : "Create Task"}
+              <Rocket className="mr-2 h-4 w-4" />
+              {loading ? "Saving…" : task ? "Update! ✨" : "Go Go Go! 🚀"}
             </Button>
           </DialogFooter>
         </form>
