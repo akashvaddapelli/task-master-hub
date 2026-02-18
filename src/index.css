@@ -58,7 +58,7 @@
   }
 
   /* Doraemon theme — sky blue & white with red accents */
-  .theme-doraemon {
+  :root.theme-doraemon {
     --background: 200 80% 95%;
     --foreground: 210 60% 12%;
 
@@ -111,7 +111,7 @@
   }
 
   /* Ben 10 theme — alien green & black with omnitrix glow */
-  .theme-benten {
+  :root.theme-benten {
     --background: 120 20% 8%;
     --foreground: 120 60% 90%;
 
