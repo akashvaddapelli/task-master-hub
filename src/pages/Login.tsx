@@ -7,9 +7,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Lock } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/contexts/ThemeContext";
 import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
+  const { branding } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,8 +38,8 @@ const Login = () => {
           <div className="flex items-center justify-center gap-3">
             <ThemeToggle />
             <Link to="/" className="inline-flex items-center gap-2.5 text-2xl font-bold text-foreground group wiggle">
-              <span className="text-3xl">🖍️</span>
-              ShinTask!
+              <span className="text-3xl">{branding.emoji}</span>
+              {branding.name}
             </Link>
           </div>
         </div>

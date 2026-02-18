@@ -7,13 +7,14 @@ import ThemeToggle from "@/components/ThemeToggle";
 import shinchanHero from "@/assets/shinchan-hero.png";
 
 const features = [
-  { icon: Zap, title: "Super Fast! ⚡", description: "Create tasks faster than Shinchan runs from his mom! Zoom zoom~" },
-  { icon: Shield, title: "Ultra Secure 🛡️", description: "Your tasks are safer than Action Kamen's secret identity!" },
-  { icon: BarChart3, title: "Stay on Track 📊", description: "Don't be lazy like Shinchan! Track your progress and be a champion!" },
+  { icon: Zap, title: "Super Fast! ⚡", description: "Create tasks faster than you can blink! Zoom zoom~" },
+  { icon: Shield, title: "Ultra Secure 🛡️", description: "Your tasks are safer than a hero's secret identity!" },
+  { icon: BarChart3, title: "Stay on Track 📊", description: "Track your progress and become the ultimate champion!" },
 ];
 
 const Index = () => {
   const { user } = useAuth();
+  const { branding } = useTheme();
 
   return (
     <div className="min-h-screen bg-background">
@@ -23,7 +24,7 @@ const Index = () => {
           <div className="flex items-center gap-2.5">
             <ThemeToggle />
             <span className="text-xl font-bold text-foreground wiggle cursor-default">
-              🖍️ ShinTask!
+              {branding.emoji} {branding.name}
             </span>
           </div>
           <div className="flex items-center gap-3">
@@ -51,14 +52,14 @@ const Index = () => {
           <div className="flex-1 text-center md:text-left animate-fade-in">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border-2 border-primary/20 bg-card px-4 py-2 text-sm font-semibold text-muted-foreground shadow-theme-sm hover-lift cursor-default">
               <Star className="h-4 w-4 text-secondary" />
-              Action! Action! Let's go~!
+              {branding.heroTagline}
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.1]">
-              Manage tasks
-              <span className="block text-primary">Shinchan style! 🖍️</span>
+              {branding.heroTitle}
+              <span className="block text-primary">{branding.heroHighlight}</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground sm:text-xl mx-auto md:mx-0">
-              Even Shinchan gets things done (sometimes)! A fun & colorful task manager to keep you organized. Oraaa~! 💪
+              {branding.heroDescription}
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center md:justify-start">
               <Button size="lg" asChild className="h-13 px-8 text-base shadow-theme-lg hover-glow press-effect rounded-full">
@@ -85,7 +86,7 @@ const Index = () => {
 
       {/* Features */}
       <section className="container pb-20 sm:pb-28">
-        <h2 className="text-center text-2xl font-bold text-foreground mb-10">Why ShinTask is Awesome! ✨</h2>
+        <h2 className="text-center text-2xl font-bold text-foreground mb-10">Why {branding.name} is Awesome! ✨</h2>
         <div className="mx-auto grid max-w-5xl gap-6 sm:gap-8 md:grid-cols-3">
           {features.map((f, i) => (
             <div
@@ -106,7 +107,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t-2 border-primary/10 bg-card/50 py-8">
         <div className="container text-center text-sm font-medium text-muted-foreground">
-          🖍️ ShinTask © 2026 — "Oraaa~! Get things done!" — Built with Lovable
+          {branding.emoji} {branding.name} © 2026 — "{branding.tagline}" — Built with Lovable
         </div>
       </footer>
     </div>
