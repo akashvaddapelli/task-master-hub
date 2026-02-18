@@ -1,52 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@400;700&family=Quicksand:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* ═══════════════════════════════════════════
+     SHINCHAN THEME — Playful crayon, warm & bouncy
+     ═══════════════════════════════════════════ */
   :root {
     --background: 47 100% 96%;
     --foreground: 350 60% 15%;
-
     --card: 0 0% 100%;
     --card-foreground: 350 60% 15%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 350 60% 15%;
-
     --primary: 0 80% 55%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 47 95% 65%;
     --secondary-foreground: 350 60% 15%;
-
     --muted: 47 60% 90%;
     --muted-foreground: 350 20% 40%;
-
     --accent: 210 85% 55%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 47 40% 82%;
     --input: 47 40% 85%;
     --ring: 0 80% 55%;
-
     --radius: 1rem;
-
     --success: 140 65% 42%;
     --success-foreground: 0 0% 100%;
-
     --warning: 35 95% 55%;
     --warning-foreground: 35 90% 14%;
-
     --shadow-sm: 0 2px 8px 0 hsl(0 80% 55% / 0.08), 0 1px 3px -1px hsl(47 60% 30% / 0.1);
     --shadow-md: 0 4px 12px -2px hsl(0 80% 55% / 0.12), 0 2px 6px -2px hsl(47 60% 30% / 0.08);
     --shadow-lg: 0 10px 25px -5px hsl(0 80% 55% / 0.15), 0 4px 10px -4px hsl(47 60% 30% / 0.1);
     --shadow-xl: 0 20px 40px -8px hsl(0 80% 55% / 0.18), 0 8px 16px -6px hsl(47 60% 30% / 0.1);
-
     --sidebar-background: 47 100% 94%;
     --sidebar-foreground: 350 60% 15%;
     --sidebar-primary: 0 80% 55%;
@@ -57,152 +47,118 @@
     --sidebar-ring: 0 80% 55%;
   }
 
-  /* Doraemon theme — sky blue & white with red accents */
+  /* ═══════════════════════════════════════════
+     DORAEMON THEME — Dreamy sky blue, soft, magical
+     ═══════════════════════════════════════════ */
   :root.theme-doraemon {
-    --background: 200 80% 95%;
-    --foreground: 210 60% 12%;
-
-    --card: 200 40% 98%;
-    --card-foreground: 210 60% 12%;
-
-    --popover: 200 40% 98%;
-    --popover-foreground: 210 60% 12%;
-
-    --primary: 210 90% 50%;
+    --background: 200 70% 96%;
+    --foreground: 215 50% 15%;
+    --card: 200 50% 99%;
+    --card-foreground: 215 50% 15%;
+    --popover: 200 50% 99%;
+    --popover-foreground: 215 50% 15%;
+    --primary: 210 85% 52%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 0 75% 58%;
+    --secondary: 0 72% 58%;
     --secondary-foreground: 0 0% 100%;
-
-    --muted: 200 40% 88%;
-    --muted-foreground: 210 30% 35%;
-
-    --accent: 45 95% 55%;
-    --accent-foreground: 45 90% 12%;
-
+    --muted: 200 40% 90%;
+    --muted-foreground: 215 25% 40%;
+    --accent: 45 90% 55%;
+    --accent-foreground: 45 85% 12%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 200 35% 80%;
-    --input: 200 35% 83%;
-    --ring: 210 90% 50%;
-
-    --radius: 1rem;
-
-    --success: 160 60% 40%;
+    --border: 200 40% 82%;
+    --input: 200 40% 86%;
+    --ring: 210 85% 52%;
+    --radius: 1.25rem;
+    --success: 160 55% 42%;
     --success-foreground: 0 0% 100%;
-
-    --warning: 35 90% 50%;
-    --warning-foreground: 35 90% 14%;
-
-    --shadow-sm: 0 2px 8px 0 hsl(210 90% 50% / 0.08), 0 1px 3px -1px hsl(200 40% 30% / 0.1);
-    --shadow-md: 0 4px 12px -2px hsl(210 90% 50% / 0.12), 0 2px 6px -2px hsl(200 40% 30% / 0.08);
-    --shadow-lg: 0 10px 25px -5px hsl(210 90% 50% / 0.15), 0 4px 10px -4px hsl(200 40% 30% / 0.1);
-    --shadow-xl: 0 20px 40px -8px hsl(210 90% 50% / 0.18), 0 8px 16px -6px hsl(200 40% 30% / 0.1);
-
-    --sidebar-background: 200 60% 93%;
-    --sidebar-foreground: 210 60% 12%;
-    --sidebar-primary: 210 90% 50%;
+    --warning: 35 85% 52%;
+    --warning-foreground: 35 85% 14%;
+    --shadow-sm: 0 2px 10px 0 hsl(210 85% 52% / 0.08), 0 1px 4px -1px hsl(200 40% 50% / 0.06);
+    --shadow-md: 0 4px 16px -2px hsl(210 85% 52% / 0.1), 0 2px 8px -2px hsl(200 40% 50% / 0.06);
+    --shadow-lg: 0 12px 30px -5px hsl(210 85% 52% / 0.14), 0 4px 12px -4px hsl(200 40% 50% / 0.08);
+    --shadow-xl: 0 24px 48px -8px hsl(210 85% 52% / 0.16), 0 8px 20px -6px hsl(200 40% 50% / 0.08);
+    --sidebar-background: 200 55% 94%;
+    --sidebar-foreground: 215 50% 15%;
+    --sidebar-primary: 210 85% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 50% 86%;
-    --sidebar-accent-foreground: 210 60% 12%;
-    --sidebar-border: 200 35% 80%;
-    --sidebar-ring: 210 90% 50%;
+    --sidebar-accent: 200 45% 88%;
+    --sidebar-accent-foreground: 215 50% 15%;
+    --sidebar-border: 200 40% 82%;
+    --sidebar-ring: 210 85% 52%;
   }
 
-  /* Ben 10 theme — alien green & black with omnitrix glow */
+  /* ═══════════════════════════════════════════
+     BEN 10 THEME — Dark alien tech, neon glow
+     ═══════════════════════════════════════════ */
   :root.theme-benten {
-    --background: 120 20% 8%;
-    --foreground: 120 60% 90%;
-
-    --card: 120 15% 12%;
-    --card-foreground: 120 60% 90%;
-
-    --popover: 120 15% 12%;
-    --popover-foreground: 120 60% 90%;
-
-    --primary: 120 100% 45%;
-    --primary-foreground: 120 20% 5%;
-
-    --secondary: 160 70% 30%;
-    --secondary-foreground: 120 60% 90%;
-
-    --muted: 120 10% 18%;
-    --muted-foreground: 120 20% 55%;
-
-    --accent: 80 90% 50%;
-    --accent-foreground: 120 20% 5%;
-
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 120 60% 90%;
-
-    --border: 120 15% 22%;
-    --input: 120 15% 22%;
-    --ring: 120 100% 45%;
-
-    --radius: 0.75rem;
-
-    --success: 120 100% 45%;
-    --success-foreground: 120 20% 5%;
-
-    --warning: 45 90% 50%;
-    --warning-foreground: 0 0% 100%;
-
-    --shadow-sm: 0 2px 8px 0 hsl(120 100% 45% / 0.1), 0 1px 3px -1px hsl(0 0% 0% / 0.3);
-    --shadow-md: 0 4px 12px -2px hsl(120 100% 45% / 0.15), 0 2px 6px -2px hsl(0 0% 0% / 0.3);
-    --shadow-lg: 0 10px 25px -5px hsl(120 100% 45% / 0.2), 0 4px 10px -4px hsl(0 0% 0% / 0.35);
-    --shadow-xl: 0 20px 40px -8px hsl(120 100% 45% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.4);
-
-    --sidebar-background: 120 15% 10%;
-    --sidebar-foreground: 120 60% 90%;
-    --sidebar-primary: 120 100% 45%;
-    --sidebar-primary-foreground: 120 20% 5%;
-    --sidebar-accent: 120 10% 16%;
-    --sidebar-accent-foreground: 120 60% 90%;
-    --sidebar-border: 120 15% 22%;
-    --sidebar-ring: 120 100% 45%;
+    --background: 140 15% 6%;
+    --foreground: 120 30% 88%;
+    --card: 140 12% 10%;
+    --card-foreground: 120 30% 88%;
+    --popover: 140 12% 10%;
+    --popover-foreground: 120 30% 88%;
+    --primary: 140 100% 42%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 160 60% 22%;
+    --secondary-foreground: 120 30% 88%;
+    --muted: 140 8% 16%;
+    --muted-foreground: 120 15% 50%;
+    --accent: 80 85% 48%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 120 30% 88%;
+    --border: 140 12% 20%;
+    --input: 140 12% 18%;
+    --ring: 140 100% 42%;
+    --radius: 0.5rem;
+    --success: 140 100% 42%;
+    --success-foreground: 0 0% 0%;
+    --warning: 45 85% 48%;
+    --warning-foreground: 0 0% 0%;
+    --shadow-sm: 0 2px 8px 0 hsl(140 100% 42% / 0.06), 0 1px 3px -1px hsl(0 0% 0% / 0.4);
+    --shadow-md: 0 4px 16px -2px hsl(140 100% 42% / 0.1), 0 2px 6px -2px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 30px -5px hsl(140 100% 42% / 0.15), 0 4px 10px -4px hsl(0 0% 0% / 0.5);
+    --shadow-xl: 0 20px 50px -8px hsl(140 100% 42% / 0.2), 0 8px 16px -6px hsl(0 0% 0% / 0.5);
+    --sidebar-background: 140 12% 8%;
+    --sidebar-foreground: 120 30% 88%;
+    --sidebar-primary: 140 100% 42%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 140 8% 14%;
+    --sidebar-accent-foreground: 120 30% 88%;
+    --sidebar-border: 140 12% 20%;
+    --sidebar-ring: 140 100% 42%;
   }
 
   .dark {
     --background: 350 30% 10%;
     --foreground: 47 90% 92%;
-
     --card: 350 25% 14%;
     --card-foreground: 47 90% 92%;
-
     --popover: 350 25% 14%;
     --popover-foreground: 47 90% 92%;
-
     --primary: 0 75% 58%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 47 60% 25%;
     --secondary-foreground: 47 90% 92%;
-
     --muted: 350 20% 20%;
     --muted-foreground: 47 30% 60%;
-
     --accent: 210 80% 58%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 47 90% 92%;
-
     --border: 350 20% 22%;
     --input: 350 20% 22%;
     --ring: 0 75% 58%;
-
     --success: 140 65% 42%;
     --success-foreground: 0 0% 100%;
-
     --warning: 35 95% 55%;
     --warning-foreground: 0 0% 100%;
-
     --shadow-sm: 0 2px 8px 0 hsl(0 0% 0% / 0.3);
     --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.4);
     --shadow-lg: 0 10px 25px -5px hsl(0 0% 0% / 0.45);
     --shadow-xl: 0 20px 40px -8px hsl(0 0% 0% / 0.5);
-
     --sidebar-background: 350 25% 12%;
     --sidebar-foreground: 47 90% 92%;
     --sidebar-primary: 0 75% 58%;
@@ -214,21 +170,228 @@
   }
 }
 
+/* ═══════════════════════════════════════════
+   PER-THEME FONT FAMILIES
+   ═══════════════════════════════════════════ */
 @layer base {
   * {
     @apply border-border;
   }
 
   html {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    @apply bg-background text-foreground antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Shinchan — rounded playful */
+  :root.theme-shinchan body,
+  :root:not(.theme-doraemon):not(.theme-benten) body {
+    font-family: 'Fredoka', 'Comic Neue', system-ui, sans-serif;
+  }
+
+  /* Doraemon — friendly rounded */
+  :root.theme-doraemon body {
+    font-family: 'Quicksand', 'Fredoka', system-ui, sans-serif;
+  }
+
+  /* Ben 10 — tech sharp */
+  :root.theme-benten body {
+    font-family: 'Rajdhani', 'Orbitron', system-ui, sans-serif;
+    letter-spacing: 0.02em;
+  }
+  :root.theme-benten h1,
+  :root.theme-benten h2,
+  :root.theme-benten h3 {
+    font-family: 'Orbitron', 'Rajdhani', system-ui, sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 }
 
+/* ═══════════════════════════════════════════
+   PER-THEME BACKGROUND TEXTURES
+   ═══════════════════════════════════════════ */
+
+/* Shinchan — subtle crayon dots */
+:root.theme-shinchan .min-h-screen,
+:root:not(.theme-doraemon):not(.theme-benten) .min-h-screen {
+  background-image: radial-gradient(circle, hsl(0 80% 55% / 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Doraemon — soft cloud-like pattern */
+:root.theme-doraemon .min-h-screen {
+  background-image: 
+    radial-gradient(ellipse 80px 60px at 20% 30%, hsl(200 70% 90% / 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 60px 45px at 70% 60%, hsl(200 70% 90% / 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 100px 70px at 85% 20%, hsl(200 70% 90% / 0.35) 0%, transparent 70%);
+}
+
+/* Ben 10 — matrix/circuit grid */
+:root.theme-benten .min-h-screen {
+  background-image: 
+    linear-gradient(hsl(140 100% 42% / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(140 100% 42% / 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME BORDER STYLES
+   ═══════════════════════════════════════════ */
+
+/* Doraemon — softer, rounder borders */
+:root.theme-doraemon .border-2 {
+  border-width: 2px;
+  border-style: solid;
+}
+
+/* Ben 10 — thin sharp borders with subtle glow */
+:root.theme-benten .border-2 {
+  border-width: 1px;
+}
+:root.theme-benten .border-l-4 {
+  border-left-width: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME HOVER & INTERACTION OVERRIDES
+   ═══════════════════════════════════════════ */
+
+/* --- Shinchan hover: playful rotate + lift (default) --- */
+
+/* --- Doraemon hover: gentle float with dreamy glow --- */
+:root.theme-doraemon .hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), 0 0 20px hsl(210 85% 52% / 0.12);
+}
+:root.theme-doraemon .hover-lift:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+:root.theme-doraemon .hover-glow:hover {
+  box-shadow: 0 0 28px hsl(210 85% 52% / 0.3), 0 0 8px hsl(210 85% 52% / 0.15);
+}
+
+/* --- Ben 10 hover: sharp scale + neon glow --- */
+:root.theme-benten .hover-lift:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-lg), 0 0 16px hsl(140 100% 42% / 0.2), inset 0 0 1px hsl(140 100% 42% / 0.15);
+}
+:root.theme-benten .hover-lift:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 0 8px hsl(140 100% 42% / 0.3);
+}
+:root.theme-benten .hover-glow:hover {
+  box-shadow: 0 0 20px hsl(140 100% 42% / 0.4), 0 0 40px hsl(140 100% 42% / 0.15);
+}
+:root.theme-benten .hover-glow:active {
+  box-shadow: 0 0 12px hsl(140 100% 42% / 0.5), 0 0 24px hsl(140 100% 42% / 0.2);
+}
+
+/* Ben 10 — neon border glow on cards */
+:root.theme-benten .bg-card {
+  border-color: hsl(140 100% 42% / 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+:root.theme-benten .bg-card:hover {
+  border-color: hsl(140 100% 42% / 0.35);
+}
+
+/* Doraemon — soft bell shimmer on cards */
+:root.theme-doraemon .bg-card {
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+:root.theme-doraemon .bg-card:hover {
+  box-shadow: var(--shadow-md), 0 0 16px hsl(210 85% 52% / 0.08);
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME BUTTON OVERRIDES
+   ═══════════════════════════════════════════ */
+
+/* Doraemon — rounded pill with soft shadow */
+:root.theme-doraemon .rounded-full {
+  border-radius: 9999px;
+}
+
+/* Ben 10 — sharp angular buttons */
+:root.theme-benten button.rounded-full,
+:root.theme-benten a.rounded-full,
+:root.theme-benten .rounded-full:not([class*="animate-spin"]) {
+  border-radius: 0.375rem;
+}
+:root.theme-benten .rounded-2xl {
+  border-radius: 0.5rem;
+}
+:root.theme-benten .rounded-xl {
+  border-radius: 0.375rem;
+}
+:root.theme-benten .rounded-3xl {
+  border-radius: 0.5rem;
+}
+
+/* Ben 10 primary button neon effect */
+:root.theme-benten .bg-primary {
+  text-shadow: 0 0 8px hsl(140 100% 42% / 0.5);
+}
+:root.theme-benten .bg-primary:hover {
+  box-shadow: 0 0 16px hsl(140 100% 42% / 0.4), 0 0 32px hsl(140 100% 42% / 0.15);
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME HEADER BAR
+   ═══════════════════════════════════════════ */
+
+/* Doraemon — gradient sky header */
+:root.theme-doraemon header.sticky {
+  background: linear-gradient(180deg, hsl(200 70% 96% / 0.95) 0%, hsl(200 50% 99% / 0.9) 100%);
+  border-bottom-color: hsl(210 85% 52% / 0.15);
+}
+
+/* Ben 10 — dark tech header with green line */
+:root.theme-benten header.sticky {
+  background: linear-gradient(180deg, hsl(140 12% 8% / 0.97) 0%, hsl(140 12% 10% / 0.95) 100%);
+  border-bottom-color: hsl(140 100% 42% / 0.3);
+  border-bottom-width: 1px;
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME SPINNER / LOADING
+   ═══════════════════════════════════════════ */
+
+/* Ben 10 — pulsing omnitrix glow on spinner */
+:root.theme-benten .animate-spin {
+  filter: drop-shadow(0 0 6px hsl(140 100% 42% / 0.5));
+}
+
+/* Doraemon — soft blue glow on spinner */
+:root.theme-doraemon .animate-spin {
+  filter: drop-shadow(0 0 6px hsl(210 85% 52% / 0.4));
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME INPUT FOCUS
+   ═══════════════════════════════════════════ */
+
+:root.theme-benten input:focus,
+:root.theme-benten textarea:focus {
+  box-shadow: 0 0 0 2px hsl(140 100% 42% / 0.2), 0 0 12px hsl(140 100% 42% / 0.1);
+  border-color: hsl(140 100% 42% / 0.5) !important;
+}
+
+:root.theme-doraemon input:focus,
+:root.theme-doraemon textarea:focus {
+  box-shadow: 0 0 0 3px hsl(210 85% 52% / 0.15), 0 0 16px hsl(210 85% 52% / 0.08);
+  border-color: hsl(210 85% 52% / 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════
+   SHARED UTILITIES
+   ═══════════════════════════════════════════ */
 @layer utilities {
   .shadow-theme-sm {
     box-shadow: var(--shadow-sm);
@@ -283,4 +446,18 @@
   0% { transform: scale(0); opacity: 1; }
   60% { opacity: 0.8; }
   100% { transform: scale(1); opacity: 0; }
+}
+
+/* Ben 10 omnitrix pulse animation */
+@keyframes omnitrix-pulse {
+  0%, 100% { box-shadow: 0 0 8px hsl(140 100% 42% / 0.3); }
+  50% { box-shadow: 0 0 20px hsl(140 100% 42% / 0.5), 0 0 40px hsl(140 100% 42% / 0.2); }
+}
+
+:root.theme-benten .shadow-theme-sm {
+  animation: omnitrix-pulse 3s ease-in-out infinite;
+  animation-play-state: paused;
+}
+:root.theme-benten .shadow-theme-sm:hover {
+  animation-play-state: running;
 }

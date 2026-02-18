@@ -6,15 +6,17 @@ import { ArrowRight, Zap, Shield, BarChart3, Star } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import shinchanHero from "@/assets/shinchan-hero.png";
 
-const features = [
-  { icon: Zap, title: "Super Fast! ⚡", description: "Create tasks faster than you can blink! Zoom zoom~" },
-  { icon: Shield, title: "Ultra Secure 🛡️", description: "Your tasks are safer than a hero's secret identity!" },
-  { icon: BarChart3, title: "Stay on Track 📊", description: "Track your progress and become the ultimate champion!" },
-];
+const featureIcons = [Zap, Shield, BarChart3];
 
 const Index = () => {
   const { user } = useAuth();
-  const { branding } = useTheme();
+  const { theme, branding } = useTheme();
+
+  const features = branding.featureTitles.map((title, i) => ({
+    icon: featureIcons[i],
+    title,
+    description: branding.featureDescriptions[i],
+  }));
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,7 +66,7 @@ const Index = () => {
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center md:justify-start">
               <Button size="lg" asChild className="h-13 px-8 text-base shadow-theme-lg hover-glow press-effect rounded-full">
                 <Link to={user ? "/dashboard" : "/register"}>
-                  {user ? "Go to Dashboard" : "Let's Goooo! 🚀"} <ArrowRight className="ml-2 h-5 w-5" />
+                  {user ? "Go to Dashboard" : branding.ctaMain} <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               {!user && (
@@ -77,7 +79,7 @@ const Index = () => {
           <div className="flex-shrink-0 animate-bounce-in">
             <img
               src={shinchanHero}
-              alt="Cute character with checklist"
+              alt="Hero character"
               className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-3xl shadow-theme-xl border-4 border-primary/20 hover-lift cursor-default"
             />
           </div>
@@ -86,7 +88,9 @@ const Index = () => {
 
       {/* Features */}
       <section className="container pb-20 sm:pb-28">
-        <h2 className="text-center text-2xl font-bold text-foreground mb-10">Why {branding.name} is Awesome! ✨</h2>
+        <h2 className="text-center text-2xl font-bold text-foreground mb-10">
+          {theme === "benten" ? `${branding.name} Capabilities` : `Why ${branding.name} is Awesome! ✨`}
+        </h2>
         <div className="mx-auto grid max-w-5xl gap-6 sm:gap-8 md:grid-cols-3">
           {features.map((f, i) => (
             <div

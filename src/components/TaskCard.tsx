@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Pencil, Trash2, Calendar } from "lucide-react";
 import { format } from "date-fns";
+import { useTheme, AnimeTheme } from "@/contexts/ThemeContext";
 
 interface TaskCardProps {
   task: Task;
@@ -12,22 +13,39 @@ interface TaskCardProps {
   onDelete: (task: Task) => void;
 }
 
-const priorityConfig: Record<string, { style: string; border: string; emoji: string; label: string }> = {
-  high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🔥", label: "Urgent!" },
-  medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "😤", label: "Do it!" },
-  low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "😌", label: "Chill" },
+const priorityConfigs: Record<AnimeTheme, Record<string, { style: string; border: string; emoji: string; label: string }>> = {
+  shinchan: {
+    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🔥", label: "Urgent!" },
+    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "😤", label: "Do it!" },
+    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "😌", label: "Chill" },
+  },
+  doraemon: {
+    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🚨", label: "Emergency!" },
+    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "🔔", label: "Gadget time!" },
+    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "☁️", label: "Relax~" },
+  },
+  benten: {
+    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🔴", label: "CRITICAL" },
+    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "🟡", label: "STANDARD" },
+    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "🟢", label: "LOW" },
+  },
 };
 
 const TaskCard = ({ task, onToggle, onEdit, onDelete }: TaskCardProps) => {
+  const { theme } = useTheme();
   const isCompleted = task.status === "completed";
-  const p = priorityConfig[task.priority];
+  const p = priorityConfigs[theme][task.priority];
+
+  const completedPrefix = theme === "benten" ? "✅ " : theme === "doraemon" ? "⭐ " : "✅ ";
 
   return (
     <div
       className={`
         group relative flex items-start gap-4 rounded-2xl border-2 border-l-4 bg-card p-5
         shadow-theme-sm transition-all duration-300
-        hover:shadow-theme-lg hover:-translate-y-1 hover:rotate-[0.3deg]
+        hover:shadow-theme-lg hover:-translate-y-1
+        ${theme === "shinchan" ? "hover:rotate-[0.3deg]" : ""}
+        ${theme === "benten" ? "hover:scale-[1.01]" : ""}
         active:shadow-theme-md active:translate-y-0 active:rotate-0
         ${p.border}
         ${isCompleted ? "opacity-50" : ""}
@@ -42,7 +60,7 @@ const TaskCard = ({ task, onToggle, onEdit, onDelete }: TaskCardProps) => {
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className={`text-base font-bold text-card-foreground transition-all duration-200 ${isCompleted ? "line-through" : ""}`}>
-            {isCompleted ? "✅ " : ""}{task.title}
+            {isCompleted ? completedPrefix : ""}{task.title}
           </h3>
           <Badge variant="outline" className={`text-xs font-bold rounded-full px-3 ${p.style}`}>
             {p.emoji} {p.label}
