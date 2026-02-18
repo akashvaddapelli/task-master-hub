@@ -57,6 +57,112 @@
     --sidebar-ring: 0 80% 55%;
   }
 
+  /* Doraemon theme — sky blue & white with red accents */
+  .theme-doraemon {
+    --background: 200 80% 95%;
+    --foreground: 210 60% 12%;
+
+    --card: 200 40% 98%;
+    --card-foreground: 210 60% 12%;
+
+    --popover: 200 40% 98%;
+    --popover-foreground: 210 60% 12%;
+
+    --primary: 210 90% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 75% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 40% 88%;
+    --muted-foreground: 210 30% 35%;
+
+    --accent: 45 95% 55%;
+    --accent-foreground: 45 90% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 35% 80%;
+    --input: 200 35% 83%;
+    --ring: 210 90% 50%;
+
+    --radius: 1rem;
+
+    --success: 160 60% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 35 90% 50%;
+    --warning-foreground: 35 90% 14%;
+
+    --shadow-sm: 0 2px 8px 0 hsl(210 90% 50% / 0.08), 0 1px 3px -1px hsl(200 40% 30% / 0.1);
+    --shadow-md: 0 4px 12px -2px hsl(210 90% 50% / 0.12), 0 2px 6px -2px hsl(200 40% 30% / 0.08);
+    --shadow-lg: 0 10px 25px -5px hsl(210 90% 50% / 0.15), 0 4px 10px -4px hsl(200 40% 30% / 0.1);
+    --shadow-xl: 0 20px 40px -8px hsl(210 90% 50% / 0.18), 0 8px 16px -6px hsl(200 40% 30% / 0.1);
+
+    --sidebar-background: 200 60% 93%;
+    --sidebar-foreground: 210 60% 12%;
+    --sidebar-primary: 210 90% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 50% 86%;
+    --sidebar-accent-foreground: 210 60% 12%;
+    --sidebar-border: 200 35% 80%;
+    --sidebar-ring: 210 90% 50%;
+  }
+
+  /* Ben 10 theme — alien green & black with omnitrix glow */
+  .theme-benten {
+    --background: 120 20% 8%;
+    --foreground: 120 60% 90%;
+
+    --card: 120 15% 12%;
+    --card-foreground: 120 60% 90%;
+
+    --popover: 120 15% 12%;
+    --popover-foreground: 120 60% 90%;
+
+    --primary: 120 100% 45%;
+    --primary-foreground: 120 20% 5%;
+
+    --secondary: 160 70% 30%;
+    --secondary-foreground: 120 60% 90%;
+
+    --muted: 120 10% 18%;
+    --muted-foreground: 120 20% 55%;
+
+    --accent: 80 90% 50%;
+    --accent-foreground: 120 20% 5%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 120 60% 90%;
+
+    --border: 120 15% 22%;
+    --input: 120 15% 22%;
+    --ring: 120 100% 45%;
+
+    --radius: 0.75rem;
+
+    --success: 120 100% 45%;
+    --success-foreground: 120 20% 5%;
+
+    --warning: 45 90% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --shadow-sm: 0 2px 8px 0 hsl(120 100% 45% / 0.1), 0 1px 3px -1px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 12px -2px hsl(120 100% 45% / 0.15), 0 2px 6px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 10px 25px -5px hsl(120 100% 45% / 0.2), 0 4px 10px -4px hsl(0 0% 0% / 0.35);
+    --shadow-xl: 0 20px 40px -8px hsl(120 100% 45% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.4);
+
+    --sidebar-background: 120 15% 10%;
+    --sidebar-foreground: 120 60% 90%;
+    --sidebar-primary: 120 100% 45%;
+    --sidebar-primary-foreground: 120 20% 5%;
+    --sidebar-accent: 120 10% 16%;
+    --sidebar-accent-foreground: 120 60% 90%;
+    --sidebar-border: 120 15% 22%;
+    --sidebar-ring: 120 100% 45%;
+  }
+
   .dark {
     --background: 350 30% 10%;
     --foreground: 47 90% 92%;
@@ -113,8 +219,13 @@
     @apply border-border;
   }
 
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 

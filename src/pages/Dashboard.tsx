@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus, LogOut, Search, ListFilter, LayoutDashboard, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
@@ -77,10 +78,12 @@ const Dashboard = () => {
       {/* Header */}
       <header className="sticky top-0 z-10 border-b-2 border-primary/20 bg-card/90 backdrop-blur-lg shadow-theme-sm">
         <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 text-xl font-bold text-foreground group wiggle">
-            <span className="text-2xl">🖍️</span>
-            ShinTask!
-          </Link>
+          <div className="flex items-center gap-2.5">
+            <ThemeToggle />
+            <Link to="/" className="text-xl font-bold text-foreground group wiggle">
+              🖍️ ShinTask!
+            </Link>
+          </div>
           <div className="flex items-center gap-3">
             <span className="hidden text-sm font-medium text-muted-foreground sm:inline">Hey, {user?.email?.split("@")[0]}! 👋</span>
             <Button
