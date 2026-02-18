@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Lock } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
@@ -32,10 +33,13 @@ const Login = () => {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="w-full max-w-md animate-fade-in">
         <div className="mb-8 text-center">
-          <Link to="/" className="inline-flex items-center gap-2.5 text-2xl font-bold text-foreground group wiggle">
-            <span className="text-3xl">🖍️</span>
-            ShinTask!
-          </Link>
+          <div className="flex items-center justify-center gap-3">
+            <ThemeToggle />
+            <Link to="/" className="inline-flex items-center gap-2.5 text-2xl font-bold text-foreground group wiggle">
+              <span className="text-3xl">🖍️</span>
+              ShinTask!
+            </Link>
+          </div>
         </div>
         <Card className="shadow-theme-xl border-2 border-primary/15 rounded-2xl">
           <CardHeader className="text-center pb-2">

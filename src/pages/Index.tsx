@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Shield, BarChart3, Star } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 import shinchanHero from "@/assets/shinchan-hero.png";
 
 const features = [
@@ -18,9 +20,11 @@ const Index = () => {
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b-2 border-primary/20 bg-card/90 backdrop-blur-lg shadow-theme-sm">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2.5 text-xl font-bold text-foreground wiggle cursor-default">
-            <span className="text-2xl">🖍️</span>
-            ShinTask!
+          <div className="flex items-center gap-2.5">
+            <ThemeToggle />
+            <span className="text-xl font-bold text-foreground wiggle cursor-default">
+              🖍️ ShinTask!
+            </span>
           </div>
           <div className="flex items-center gap-3">
             {user ? (
