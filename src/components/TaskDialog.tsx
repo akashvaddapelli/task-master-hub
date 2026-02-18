@@ -39,16 +39,16 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-xl md:max-w-2xl w-[95vw] shadow-theme-xl rounded-2xl p-0 overflow-hidden animate-bounce-in border-2 border-primary/20">
+      <DialogContent className="sm:max-w-lg md:max-w-xl w-[95vw] shadow-theme-xl rounded-2xl p-0 overflow-hidden animate-bounce-in border-2 border-primary/20">
         {/* Fun header */}
-        <div className="bg-gradient-to-r from-primary/10 via-secondary/30 to-accent/10 border-b-2 border-primary/10 px-6 pt-6 pb-4 sm:px-8 sm:pt-8 sm:pb-5">
+        <div className="bg-gradient-to-r from-primary/10 via-secondary/30 to-accent/10 border-b-2 border-primary/10 px-5 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
           <DialogHeader>
             <div className="flex items-center gap-3 mb-1">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 shadow-theme-sm">
-                <span className="text-2xl">{task ? "✏️" : "🚀"}</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 shadow-theme-sm">
+                <span className="text-xl">{task ? "✏️" : "🚀"}</span>
               </div>
               <div>
-                <DialogTitle className="text-xl sm:text-2xl font-bold">
+                <DialogTitle className="text-lg sm:text-xl font-bold">
                   {task ? "Edit Mission!" : "New Mission!"}
                 </DialogTitle>
                 <DialogDescription className="text-sm mt-0.5 font-medium">
@@ -59,9 +59,9 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
           </DialogHeader>
         </div>
 
-        <form onSubmit={handleSubmit} className="px-6 py-5 sm:px-8 sm:py-6 space-y-5 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="px-5 py-4 sm:px-6 sm:py-5 space-y-4">
           {/* Title */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="title" className="text-sm font-bold flex items-center gap-2">
               <Type className="h-4 w-4 text-primary" />
               Mission Name ✨
@@ -72,12 +72,12 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What needs to be done?"
               required
-              className="h-12 text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
+              className="h-10 text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
             />
           </div>
 
           {/* Description */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="description" className="text-sm font-bold flex items-center gap-2">
               <AlignLeft className="h-4 w-4 text-primary" />
               Details 📋
@@ -87,36 +87,36 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Add more details about this mission…"
-              rows={5}
-              className="text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200 resize-none"
+              rows={3}
+              className="text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200 resize-none"
             />
           </div>
 
           {/* Priority & Due Date */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1.5">
               <Label className="text-sm font-bold flex items-center gap-2">
                 <Flag className="h-4 w-4 text-primary" />
                 Priority Level 🎯
               </Label>
               <Select value={priority} onValueChange={(v) => setPriority(v as "low" | "medium" | "high")}>
-                <SelectTrigger className="h-12 text-base rounded-xl border-2 shadow-theme-sm hover:shadow-theme-md transition-all duration-200">
+                <SelectTrigger className="h-10 text-sm rounded-xl border-2 shadow-theme-sm hover:shadow-theme-md transition-all duration-200">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="shadow-theme-lg rounded-xl">
-                  <SelectItem value="low" className="py-3 cursor-pointer rounded-lg">
+                  <SelectItem value="low" className="py-2 cursor-pointer rounded-lg">
                     <span className="flex items-center gap-2">😌 Chill~</span>
                   </SelectItem>
-                  <SelectItem value="medium" className="py-3 cursor-pointer rounded-lg">
+                  <SelectItem value="medium" className="py-2 cursor-pointer rounded-lg">
                     <span className="flex items-center gap-2">😤 Let's Do It!</span>
                   </SelectItem>
-                  <SelectItem value="high" className="py-3 cursor-pointer rounded-lg">
+                  <SelectItem value="high" className="py-2 cursor-pointer rounded-lg">
                     <span className="flex items-center gap-2">🔥 URGENT!</span>
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="due_date" className="text-sm font-bold flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary" />
                 Deadline 📅
@@ -126,25 +126,25 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="h-12 text-base rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
+                className="h-10 text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200"
               />
             </div>
           </div>
 
           {/* Footer */}
-          <DialogFooter className="pt-4 border-t-2 border-primary/10 gap-3 sm:gap-3">
+          <DialogFooter className="pt-3 border-t-2 border-primary/10 gap-3">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              className="h-11 px-6 text-base rounded-full border-2 hover-lift press-effect"
+              className="h-10 px-5 text-sm rounded-full border-2 hover-lift press-effect"
             >
               Nah, Later 😴
             </Button>
             <Button
               type="submit"
               disabled={loading || !title.trim()}
-              className="h-11 px-8 text-base rounded-full hover-glow press-effect shadow-theme-md"
+              className="h-10 px-6 text-sm rounded-full hover-glow press-effect shadow-theme-md"
             >
               <Rocket className="mr-2 h-4 w-4" />
               {loading ? "Saving…" : task ? "Update! ✨" : "Go Go Go! 🚀"}
