@@ -11,9 +11,11 @@ import { Plus, LogOut, Search, ListFilter, LayoutDashboard, Sparkles } from "luc
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
+  const { branding } = useTheme();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -81,7 +83,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-2.5">
             <ThemeToggle />
             <Link to="/" className="text-xl font-bold text-foreground group wiggle">
-              🖍️ ShinTask!
+              {branding.emoji} {branding.name}
             </Link>
           </div>
           <div className="flex items-center gap-3">
@@ -102,10 +104,10 @@ const Dashboard = () => {
         {/* Page Title */}
         <div className="mb-8 animate-fade-in">
           <div className="flex items-center gap-3 mb-1">
-            <span className="text-3xl">🌟</span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">My Mission Board!</h1>
+            <span className="text-3xl">{branding.emoji}</span>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">My {branding.missionWord} Board!</h1>
           </div>
-          <p className="text-muted-foreground ml-12">Complete tasks and become a champion! Oraaa~! 💪</p>
+          <p className="text-muted-foreground ml-12">{branding.tagline} 💪</p>
         </div>
 
         {/* Stats */}
@@ -151,7 +153,7 @@ const Dashboard = () => {
             onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             className="h-11 px-6 shadow-theme-md hover-glow press-effect rounded-full text-base"
           >
-            <Plus className="mr-2 h-5 w-5" /> New Mission!
+            <Plus className="mr-2 h-5 w-5" /> New {branding.missionWord}!
           </Button>
         </div>
 
@@ -163,14 +165,14 @@ const Dashboard = () => {
           </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border-2 border-dashed border-primary/30 bg-card p-16 text-center shadow-theme-sm animate-fade-in">
-            <div className="text-6xl mb-4">😴</div>
-            <h3 className="text-xl font-bold text-foreground">No missions yet!</h3>
-            <p className="mt-2 text-muted-foreground">Don't be lazy like Shinchan! Create your first task~</p>
+            <div className="text-6xl mb-4">{branding.emptyEmoji}</div>
+            <h3 className="text-xl font-bold text-foreground">{branding.emptyTitle}</h3>
+            <p className="mt-2 text-muted-foreground">{branding.emptyDescription}</p>
             <Button
               className="mt-6 h-11 px-8 shadow-theme-md hover-glow press-effect rounded-full"
               onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             >
-              <Sparkles className="mr-2 h-5 w-5" /> Create First Mission!
+              <Sparkles className="mr-2 h-5 w-5" /> Create First {branding.missionWord}!
             </Button>
           </div>
         ) : (

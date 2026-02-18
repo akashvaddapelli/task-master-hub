@@ -1,12 +1,7 @@
-import { useTheme, AnimeTheme } from "@/contexts/ThemeContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-
-const themeEmoji: Record<AnimeTheme, string> = {
-  shinchan: "🖍️",
-  doraemon: "🔔",
-  benten: "👽",
-};
+import { Palette } from "lucide-react";
 
 const ThemeToggle = () => {
   const { theme, cycleTheme } = useTheme();
@@ -40,7 +35,7 @@ const ThemeToggle = () => {
       `}
       title="Change theme!"
     >
-      <span className="text-lg">{themeEmoji[theme]}</span>
+      <Palette className="h-4 w-4" />
     </Button>
   );
 };
