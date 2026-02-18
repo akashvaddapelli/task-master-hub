@@ -7,7 +7,7 @@ import TaskDialog from "@/components/TaskDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckSquare, Plus, LogOut, Search, ListFilter } from "lucide-react";
+import { CheckSquare, Plus, LogOut, Search, ListFilter, LayoutDashboard } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
-      toast({ title: "Task created" });
+      toast({ title: "✅ Task created successfully" });
     },
     onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
@@ -42,7 +42,7 @@ const Dashboard = () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
       setEditingTask(null);
-      toast({ title: "Task updated" });
+      toast({ title: "✏️ Task updated" });
     },
     onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
@@ -51,7 +51,7 @@ const Dashboard = () => {
     mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      toast({ title: "Task deleted" });
+      toast({ title: "🗑️ Task deleted" });
     },
     onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
   });
@@ -66,75 +66,110 @@ const Dashboard = () => {
     pending: tasks.filter((t) => t.status === "pending").length,
   };
 
+  const statItems = [
+    { label: "Total Tasks", value: stats.total, color: "from-primary/10 to-primary/5 border-primary/20" },
+    { label: "In Progress", value: stats.pending, color: "from-warning/10 to-warning/5 border-warning/20" },
+    { label: "Completed", value: stats.completed, color: "from-success/10 to-success/5 border-success/20" },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b bg-card/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-10 border-b bg-card/80 backdrop-blur-lg shadow-theme-sm">
         <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-foreground">
-            <CheckSquare className="h-6 w-6 text-primary" />
+          <Link to="/" className="flex items-center gap-2.5 text-xl font-extrabold text-foreground group">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary shadow-theme-sm transition-transform duration-200 group-hover:scale-105">
+              <CheckSquare className="h-5 w-5 text-primary-foreground" />
+            </div>
             TaskFlow
           </Link>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
-            <Button variant="ghost" size="icon" onClick={signOut}>
+            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">{user?.email}</span>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={signOut}
+              className="hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 active:scale-95 transition-all duration-200"
+            >
               <LogOut className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="container max-w-3xl py-8">
+      <main className="container max-w-4xl py-8 px-4 sm:px-6">
+        {/* Page Title */}
+        <div className="mb-8 animate-fade-in">
+          <div className="flex items-center gap-3 mb-1">
+            <LayoutDashboard className="h-6 w-6 text-primary" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Dashboard</h1>
+          </div>
+          <p className="text-muted-foreground ml-9">Manage and organize your tasks efficiently</p>
+        </div>
+
         {/* Stats */}
-        <div className="mb-8 grid grid-cols-3 gap-4">
-          {[
-            { label: "Total", value: stats.total },
-            { label: "Pending", value: stats.pending },
-            { label: "Completed", value: stats.completed },
-          ].map((s) => (
-            <div key={s.label} className="rounded-lg border bg-card p-4 text-center">
-              <p className="text-2xl font-bold text-foreground">{s.value}</p>
-              <p className="text-sm text-muted-foreground">{s.label}</p>
+        <div className="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {statItems.map((s, i) => (
+            <div
+              key={s.label}
+              className={`rounded-xl border bg-gradient-to-br ${s.color} p-5 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in`}
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
+              <p className="text-3xl font-black text-foreground">{s.value}</p>
+              <p className="text-sm font-medium text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
         </div>
 
         {/* Toolbar */}
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-1 gap-2">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between animate-fade-in" style={{ animationDelay: "200ms" }}>
+          <div className="flex flex-1 gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search tasks…" value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+              <Input
+                placeholder="Search tasks…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-10 h-11 shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
+              />
             </div>
             <Select value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
-              <SelectTrigger className="w-36">
+              <SelectTrigger className="w-40 h-11 shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
                 <ListFilter className="mr-2 h-4 w-4" />
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All</SelectItem>
+              <SelectContent className="shadow-theme-lg">
+                <SelectItem value="all">All Tasks</SelectItem>
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="completed">Completed</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <Button onClick={() => { setEditingTask(null); setDialogOpen(true); }}>
-            <Plus className="mr-2 h-4 w-4" /> New Task
+          <Button
+            onClick={() => { setEditingTask(null); setDialogOpen(true); }}
+            className="h-11 px-6 shadow-theme-md hover-glow press-effect"
+          >
+            <Plus className="mr-2 h-5 w-5" /> New Task
           </Button>
         </div>
 
         {/* Task List */}
         {isLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div className="flex justify-center py-16">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           </div>
         ) : filtered.length === 0 ? (
-          <div className="rounded-lg border border-dashed bg-card p-12 text-center">
-            <CheckSquare className="mx-auto mb-4 h-12 w-12 text-muted-foreground/50" />
-            <h3 className="text-lg font-medium text-foreground">No tasks yet</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Create your first task to get started</p>
-            <Button className="mt-4" onClick={() => { setEditingTask(null); setDialogOpen(true); }}>
-              <Plus className="mr-2 h-4 w-4" /> Create Task
+          <div className="rounded-2xl border-2 border-dashed bg-card p-16 text-center shadow-theme-sm animate-fade-in">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+              <CheckSquare className="h-8 w-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground">No tasks yet</h3>
+            <p className="mt-2 text-muted-foreground">Create your first task to get started</p>
+            <Button
+              className="mt-6 h-11 px-8 shadow-theme-md hover-glow press-effect"
+              onClick={() => { setEditingTask(null); setDialogOpen(true); }}
+            >
+              <Plus className="mr-2 h-5 w-5" /> Create Task
             </Button>
           </div>
         ) : (
