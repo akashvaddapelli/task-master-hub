@@ -7,7 +7,7 @@ import TaskDialog from "@/components/TaskDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckSquare, Plus, LogOut, Search, ListFilter, LayoutDashboard } from "lucide-react";
+import { Plus, LogOut, Search, ListFilter, LayoutDashboard, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 
@@ -31,9 +31,9 @@ const Dashboard = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
-      toast({ title: "✅ Task created successfully" });
+      toast({ title: "🎉 Task created! Oraaa~!" });
     },
-    onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
   });
 
   const updateMutation = useMutation({
@@ -42,18 +42,18 @@ const Dashboard = () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
       setEditingTask(null);
-      toast({ title: "✏️ Task updated" });
+      toast({ title: "✏️ Task updated! Nice~!" });
     },
-    onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      toast({ title: "🗑️ Task deleted" });
+      toast({ title: "🗑️ Bye bye task~!" });
     },
-    onError: (e: Error) => toast({ title: "Error", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
   });
 
   const filtered = tasks
@@ -67,29 +67,27 @@ const Dashboard = () => {
   };
 
   const statItems = [
-    { label: "Total Tasks", value: stats.total, color: "from-primary/10 to-primary/5 border-primary/20" },
-    { label: "In Progress", value: stats.pending, color: "from-warning/10 to-warning/5 border-warning/20" },
-    { label: "Completed", value: stats.completed, color: "from-success/10 to-success/5 border-success/20" },
+    { label: "Total Tasks", value: stats.total, emoji: "📋", color: "border-primary/30 bg-primary/5" },
+    { label: "In Progress", value: stats.pending, emoji: "🔥", color: "border-warning/30 bg-warning/5" },
+    { label: "Completed", value: stats.completed, emoji: "🏆", color: "border-success/30 bg-success/5" },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b bg-card/80 backdrop-blur-lg shadow-theme-sm">
+      <header className="sticky top-0 z-10 border-b-2 border-primary/20 bg-card/90 backdrop-blur-lg shadow-theme-sm">
         <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2.5 text-xl font-extrabold text-foreground group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary shadow-theme-sm transition-transform duration-200 group-hover:scale-105">
-              <CheckSquare className="h-5 w-5 text-primary-foreground" />
-            </div>
-            TaskFlow
+          <Link to="/" className="flex items-center gap-2.5 text-xl font-bold text-foreground group wiggle">
+            <span className="text-2xl">🖍️</span>
+            ShinTask!
           </Link>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">{user?.email}</span>
+            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">Hey, {user?.email?.split("@")[0]}! 👋</span>
             <Button
               variant="outline"
               size="icon"
               onClick={signOut}
-              className="hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 active:scale-95 transition-all duration-200"
+              className="rounded-full border-2 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 active:scale-95 transition-all duration-200"
             >
               <LogOut className="h-4 w-4" />
             </Button>
@@ -101,10 +99,10 @@ const Dashboard = () => {
         {/* Page Title */}
         <div className="mb-8 animate-fade-in">
           <div className="flex items-center gap-3 mb-1">
-            <LayoutDashboard className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Dashboard</h1>
+            <span className="text-3xl">🌟</span>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">My Mission Board!</h1>
           </div>
-          <p className="text-muted-foreground ml-9">Manage and organize your tasks efficiently</p>
+          <p className="text-muted-foreground ml-12">Complete tasks and become a champion! Oraaa~! 💪</p>
         </div>
 
         {/* Stats */}
@@ -112,11 +110,12 @@ const Dashboard = () => {
           {statItems.map((s, i) => (
             <div
               key={s.label}
-              className={`rounded-xl border bg-gradient-to-br ${s.color} p-5 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in`}
+              className={`rounded-2xl border-2 ${s.color} p-5 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
+              <div className="text-3xl mb-1">{s.emoji}</div>
               <p className="text-3xl font-black text-foreground">{s.value}</p>
-              <p className="text-sm font-medium text-muted-foreground mt-1">{s.label}</p>
+              <p className="text-sm font-semibold text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
         </div>
@@ -127,49 +126,48 @@ const Dashboard = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search tasks…"
+                placeholder="Search tasks... 🔍"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 h-11 shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
+                className="pl-10 h-11 rounded-full border-2 shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
               />
             </div>
             <Select value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
-              <SelectTrigger className="w-40 h-11 shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
+              <SelectTrigger className="w-40 h-11 rounded-full border-2 shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
                 <ListFilter className="mr-2 h-4 w-4" />
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="shadow-theme-lg">
+              <SelectContent className="shadow-theme-lg rounded-xl">
                 <SelectItem value="all">All Tasks</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
+                <SelectItem value="pending">Pending ⏳</SelectItem>
+                <SelectItem value="completed">Done! ✅</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <Button
             onClick={() => { setEditingTask(null); setDialogOpen(true); }}
-            className="h-11 px-6 shadow-theme-md hover-glow press-effect"
+            className="h-11 px-6 shadow-theme-md hover-glow press-effect rounded-full text-base"
           >
-            <Plus className="mr-2 h-5 w-5" /> New Task
+            <Plus className="mr-2 h-5 w-5" /> New Mission!
           </Button>
         </div>
 
         {/* Task List */}
         {isLoading ? (
-          <div className="flex justify-center py-16">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div className="flex flex-col items-center justify-center py-16 gap-3">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+            <p className="text-muted-foreground font-medium">Loading missions... 🚀</p>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl border-2 border-dashed bg-card p-16 text-center shadow-theme-sm animate-fade-in">
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-              <CheckSquare className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-bold text-foreground">No tasks yet</h3>
-            <p className="mt-2 text-muted-foreground">Create your first task to get started</p>
+          <div className="rounded-2xl border-2 border-dashed border-primary/30 bg-card p-16 text-center shadow-theme-sm animate-fade-in">
+            <div className="text-6xl mb-4">😴</div>
+            <h3 className="text-xl font-bold text-foreground">No missions yet!</h3>
+            <p className="mt-2 text-muted-foreground">Don't be lazy like Shinchan! Create your first task~</p>
             <Button
-              className="mt-6 h-11 px-8 shadow-theme-md hover-glow press-effect"
+              className="mt-6 h-11 px-8 shadow-theme-md hover-glow press-effect rounded-full"
               onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             >
-              <Plus className="mr-2 h-5 w-5" /> Create Task
+              <Sparkles className="mr-2 h-5 w-5" /> Create First Mission!
             </Button>
           </div>
         ) : (
