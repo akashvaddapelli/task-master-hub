@@ -9,6 +9,12 @@ const THEME_COLORS: Record<AnimeTheme, string[]> = {
   benten: ["#22c55e", "#16a34a", "#a3e635", "#4ade80", "#86efac"],
 };
 
+const THEME_RIPPLE: Record<AnimeTheme, string> = {
+  shinchan: "rgba(224, 62, 62, 0.25)",
+  doraemon: "rgba(37, 99, 235, 0.25)",
+  benten: "rgba(34, 197, 94, 0.3)",
+};
+
 interface Particle {
   x: number;
   y: number;
@@ -140,20 +146,38 @@ const ThemeToggle = () => {
   const handleClick = () => {
     setSpinning(true);
 
-    // Get next theme colors before cycling
     const order: AnimeTheme[] = ["shinchan", "doraemon", "benten"];
     const nextTheme = order[(order.indexOf(theme) + 1) % order.length];
     const colors = THEME_COLORS[nextTheme];
+    const rippleColor = THEME_RIPPLE[nextTheme];
 
-    // Particle burst from button center
     if (btnRef.current) {
       const rect = btnRef.current.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
+
+      // Ripple wave
+      const ripple = document.createElement("div");
+      const maxDim = Math.max(window.innerWidth, window.innerHeight) * 2.5;
+      ripple.style.cssText = `
+        position:fixed;
+        left:${cx}px;top:${cy}px;
+        width:${maxDim}px;height:${maxDim}px;
+        margin-left:${-maxDim / 2}px;margin-top:${-maxDim / 2}px;
+        border-radius:50%;
+        background: radial-gradient(circle, ${rippleColor} 0%, transparent 70%);
+        pointer-events:none;z-index:9998;
+        transform:scale(0);opacity:1;
+        animation: theme-ripple 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      `;
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 750);
+
+      // Particles on top
       spawnParticles(getCanvas(), cx, cy, colors);
     }
 
-    // Flash effect
+    // Flash
     document.documentElement.style.transition = "filter 0.15s ease";
     document.documentElement.style.filter = "brightness(1.3) saturate(1.5)";
     setTimeout(() => {
