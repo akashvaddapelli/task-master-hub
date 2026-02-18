@@ -7,7 +7,7 @@ import TaskDialog from "@/components/TaskDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, LogOut, Search, ListFilter, LayoutDashboard, Sparkles } from "lucide-react";
+import { Plus, LogOut, Search, ListFilter, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -15,7 +15,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
-  const { branding } = useTheme();
+  const { theme, branding } = useTheme();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -34,9 +34,9 @@ const Dashboard = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
-      toast({ title: "🎉 Task created! Oraaa~!" });
+      toast({ title: branding.toastCreate });
     },
-    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: branding.toastError, description: e.message, variant: "destructive" }),
   });
 
   const updateMutation = useMutation({
@@ -45,18 +45,18 @@ const Dashboard = () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setDialogOpen(false);
       setEditingTask(null);
-      toast({ title: "✏️ Task updated! Nice~!" });
+      toast({ title: branding.toastUpdate });
     },
-    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: branding.toastError, description: e.message, variant: "destructive" }),
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      toast({ title: "🗑️ Bye bye task~!" });
+      toast({ title: branding.toastDelete });
     },
-    onError: (e: Error) => toast({ title: "Oops! 😅", description: e.message, variant: "destructive" }),
+    onError: (e: Error) => toast({ title: branding.toastError, description: e.message, variant: "destructive" }),
   });
 
   const filtered = tasks
@@ -69,10 +69,29 @@ const Dashboard = () => {
     pending: tasks.filter((t) => t.status === "pending").length,
   };
 
+  const statConfigs = {
+    shinchan: [
+      { label: "Total Tasks", emoji: "📋", color: "border-primary/30 bg-primary/5" },
+      { label: "In Progress", emoji: "🔥", color: "border-warning/30 bg-warning/5" },
+      { label: "Completed", emoji: "🏆", color: "border-success/30 bg-success/5" },
+    ],
+    doraemon: [
+      { label: "All Quests", emoji: "🔔", color: "border-primary/20 bg-primary/5" },
+      { label: "Active", emoji: "🌀", color: "border-warning/20 bg-warning/5" },
+      { label: "Solved!", emoji: "⭐", color: "border-success/20 bg-success/5" },
+    ],
+    benten: [
+      { label: "Total Ops", emoji: "📡", color: "border-primary/20 bg-primary/5" },
+      { label: "Active", emoji: "⚡", color: "border-warning/20 bg-warning/5" },
+      { label: "Complete", emoji: "✅", color: "border-success/20 bg-success/5" },
+    ],
+  };
+
+  const currentStats = statConfigs[theme];
   const statItems = [
-    { label: "Total Tasks", value: stats.total, emoji: "📋", color: "border-primary/30 bg-primary/5" },
-    { label: "In Progress", value: stats.pending, emoji: "🔥", color: "border-warning/30 bg-warning/5" },
-    { label: "Completed", value: stats.completed, emoji: "🏆", color: "border-success/30 bg-success/5" },
+    { ...currentStats[0], value: stats.total },
+    { ...currentStats[1], value: stats.pending },
+    { ...currentStats[2], value: stats.completed },
   ];
 
   return (
@@ -87,7 +106,10 @@ const Dashboard = () => {
             </Link>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">Hey, {user?.email?.split("@")[0]}! 👋</span>
+            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
+              {theme === "benten" ? `Agent ${user?.email?.split("@")[0]}` : `Hey, ${user?.email?.split("@")[0]}!`} 
+              {theme === "shinchan" ? " 👋" : theme === "doraemon" ? " 🔔" : " 🛡️"}
+            </span>
             <Button
               variant="outline"
               size="icon"
@@ -105,9 +127,11 @@ const Dashboard = () => {
         <div className="mb-8 animate-fade-in">
           <div className="flex items-center gap-3 mb-1">
             <span className="text-3xl">{branding.emoji}</span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">My {branding.missionWord} Board!</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+              {theme === "benten" ? `${branding.missionWord} Control` : `My ${branding.missionWord} Board!`}
+            </h1>
           </div>
-          <p className="text-muted-foreground ml-12">{branding.tagline} 💪</p>
+          <p className="text-muted-foreground ml-12">{branding.tagline}</p>
         </div>
 
         {/* Stats */}
@@ -131,7 +155,7 @@ const Dashboard = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search tasks... 🔍"
+                placeholder={branding.searchPlaceholder}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="pl-10 h-11 rounded-full border-2 shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
@@ -143,9 +167,9 @@ const Dashboard = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="shadow-theme-lg rounded-xl">
-                <SelectItem value="all">All Tasks</SelectItem>
-                <SelectItem value="pending">Pending ⏳</SelectItem>
-                <SelectItem value="completed">Done! ✅</SelectItem>
+                <SelectItem value="all">{theme === "benten" ? "All Ops" : "All Tasks"}</SelectItem>
+                <SelectItem value="pending">{theme === "benten" ? "Active ⚡" : "Pending ⏳"}</SelectItem>
+                <SelectItem value="completed">{theme === "benten" ? "Complete ✅" : "Done! ✅"}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -161,7 +185,7 @@ const Dashboard = () => {
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-            <p className="text-muted-foreground font-medium">Loading missions... 🚀</p>
+            <p className="text-muted-foreground font-medium">{branding.loadingText}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border-2 border-dashed border-primary/30 bg-card p-16 text-center shadow-theme-sm animate-fade-in">
@@ -172,7 +196,7 @@ const Dashboard = () => {
               className="mt-6 h-11 px-8 shadow-theme-md hover-glow press-effect rounded-full"
               onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             >
-              <Sparkles className="mr-2 h-5 w-5" /> Create First {branding.missionWord}!
+              <Sparkles className="mr-2 h-5 w-5" /> {branding.ctaFirst}
             </Button>
           </div>
         ) : (

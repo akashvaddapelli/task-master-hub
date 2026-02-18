@@ -14,6 +14,27 @@ export interface ThemeBranding {
   emptyEmoji: string;
   emptyTitle: string;
   emptyDescription: string;
+  // UI-specific
+  searchPlaceholder: string;
+  toastCreate: string;
+  toastUpdate: string;
+  toastDelete: string;
+  toastError: string;
+  ctaMain: string;
+  ctaFirst: string;
+  ctaLogin: string;
+  ctaRegister: string;
+  cancelLabel: string;
+  saveLabel: string;
+  updateLabel: string;
+  loginWelcome: string;
+  loginSubtext: string;
+  registerWelcome: string;
+  registerSubtext: string;
+  emailPlaceholder: string;
+  loadingText: string;
+  featureDescriptions: string[];
+  featureTitles: string[];
 }
 
 const BRANDING: Record<AnimeTheme, ThemeBranding> = {
@@ -29,6 +50,30 @@ const BRANDING: Record<AnimeTheme, ThemeBranding> = {
     emptyEmoji: "😴",
     emptyTitle: "No missions yet!",
     emptyDescription: "Don't be lazy like Shinchan! Create your first task~",
+    searchPlaceholder: "Search missions... 🔍",
+    toastCreate: "🎉 Mission created! Oraaa~!",
+    toastUpdate: "✏️ Mission updated! Nice~!",
+    toastDelete: "🗑️ Bye bye mission~!",
+    toastError: "Oops! 😅",
+    ctaMain: "Let's Goooo! 🚀",
+    ctaFirst: "Create First Mission!",
+    ctaLogin: "Let's Go! 🚀",
+    ctaRegister: "Oraaa~! Let's Go! 🚀",
+    cancelLabel: "Nah, Later 😴",
+    saveLabel: "Go Go Go! 🚀",
+    updateLabel: "Update! ✨",
+    loginWelcome: "Welcome back!",
+    loginSubtext: "Sign in to continue your missions~",
+    registerWelcome: "Join the fun!",
+    registerSubtext: "Create your account and start your missions~",
+    emailPlaceholder: "shinchan@example.com",
+    loadingText: "Loading missions... 🚀",
+    featureTitles: ["Super Fast! ⚡", "Ultra Secure 🛡️", "Stay on Track 📊"],
+    featureDescriptions: [
+      "Create tasks faster than Shinchan runs from his mom!",
+      "Your tasks are safer than Action Kamen's secret identity!",
+      "Don't be lazy like Shinchan! Track your progress~",
+    ],
   },
   doraemon: {
     name: "DoraTask!",
@@ -41,7 +86,31 @@ const BRANDING: Record<AnimeTheme, ThemeBranding> = {
     missionWord: "Quest",
     emptyEmoji: "🤖",
     emptyTitle: "No quests yet!",
-    emptyDescription: "Nobita needs your help! Create your first quest~",
+    emptyDescription: "Nobita needs your help! Open the 4D pocket and create your first quest~",
+    searchPlaceholder: "Search quests... 🔍",
+    toastCreate: "🔔 Quest created! Doraemon approves~!",
+    toastUpdate: "✨ Quest updated with a gadget~!",
+    toastDelete: "🌀 Quest vanished into the pocket~!",
+    toastError: "Oh no, Nobita! 😰",
+    ctaMain: "Open 4D Pocket! 🌀",
+    ctaFirst: "Create First Quest!",
+    ctaLogin: "Enter the Door! 🚪",
+    ctaRegister: "Get Your Pocket! 🌀",
+    cancelLabel: "Maybe later~ 💤",
+    saveLabel: "Gadget Go! 🌀",
+    updateLabel: "Upgrade! ✨",
+    loginWelcome: "Welcome home!",
+    loginSubtext: "Nobita's been waiting! Sign in to your quests~",
+    registerWelcome: "Hello, friend!",
+    registerSubtext: "Get your own 4D pocket and start questing~",
+    emailPlaceholder: "nobita@example.com",
+    loadingText: "Searching the 4D pocket... 🌀",
+    featureTitles: ["Gadget Speed! 🌀", "Pocket Security 🔒", "Smart Tracking 📊"],
+    featureDescriptions: [
+      "Faster than the Anywhere Door! Create quests in a flash~",
+      "Protected by Doraemon's best gadgets! Ultra safe~",
+      "Even Nobita can stay on track with this magic~",
+    ],
   },
   benten: {
     name: "OmniTask!",
@@ -53,8 +122,32 @@ const BRANDING: Record<AnimeTheme, ThemeBranding> = {
     heroDescription: "Transform into any alien and smash through your to-do list! The Omnitrix-powered task manager. Go hero! 💥",
     missionWord: "Mission",
     emptyEmoji: "⌚",
-    emptyTitle: "No missions yet!",
-    emptyDescription: "The Omnitrix is ready! Create your first mission, hero~",
+    emptyTitle: "No missions detected.",
+    emptyDescription: "The Omnitrix is powered up. Initiate your first mission, hero.",
+    searchPlaceholder: "Scan missions... 🔍",
+    toastCreate: "⚡ Mission deployed!",
+    toastUpdate: "🔧 Mission recalibrated.",
+    toastDelete: "💥 Mission eliminated.",
+    toastError: "System error! 🚨",
+    ctaMain: "Hero Time! ⚡",
+    ctaFirst: "Deploy First Mission!",
+    ctaLogin: "Access Terminal ⚡",
+    ctaRegister: "Initialize Omnitrix ⚡",
+    cancelLabel: "Stand down",
+    saveLabel: "Deploy! ⚡",
+    updateLabel: "Recalibrate ⚡",
+    loginWelcome: "Access Granted",
+    loginSubtext: "Authenticate to access mission control.",
+    registerWelcome: "New Hero Registration",
+    registerSubtext: "Initialize your Omnitrix and begin operations.",
+    emailPlaceholder: "hero@omnitrix.com",
+    loadingText: "Scanning alien database... ⚡",
+    featureTitles: ["Alien Speed ⚡", "Omnitrix Shield 🛡️", "Hero Tracker 📡"],
+    featureDescriptions: [
+      "Execute missions at XLR8 speed. No delays.",
+      "Secured by Omnitrix-level encryption. Unbreakable.",
+      "Track all missions across the galaxy. Zero blind spots.",
+    ],
   },
 };
 
@@ -82,10 +175,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const root = document.documentElement;
-    // Remove all theme classes, then add current
     THEME_ORDER.forEach((t) => root.classList.remove(`theme-${t}`));
     root.classList.add(`theme-${theme}`);
     localStorage.setItem(STORAGE_KEY, theme);
+    // Update page title
+    document.title = BRANDING[theme].name;
   }, [theme]);
 
   const cycleTheme = useCallback(() => {
