@@ -11,25 +11,15 @@ const NotificationBell = () => {
     markAsRead,
     markAllAsRead,
     deleteNotification,
-    requestPushPermission,
   } = useNotifications();
   const [open, setOpen] = useState(false);
-  const [hasAskedPermission, setHasAskedPermission] = useState(false);
-
-  const handleOpen = async () => {
-    setOpen(!open);
-    if (!hasAskedPermission && "Notification" in window && Notification.permission === "default") {
-      setHasAskedPermission(true);
-      await requestPushPermission();
-    }
-  };
 
   return (
     <div className="relative">
       <Button
         variant="outline"
         size="icon"
-        onClick={handleOpen}
+        onClick={() => setOpen(!open)}
         className="relative rounded-full border shadow-theme-sm hover:shadow-theme-md hover-lift press-effect transition-all duration-200"
       >
         <Bell className="h-4 w-4" />

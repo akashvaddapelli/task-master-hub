@@ -1,7 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 export interface Notification {
   id: string;
@@ -69,31 +70,19 @@ export function useNotifications() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["notifications"] }),
   });
 
-  // Browser push notification permission & display
-  const requestPushPermission = useCallback(async () => {
-    if (!("Notification" in window)) return false;
-    if (Notification.permission === "granted") return true;
-    const result = await Notification.requestPermission();
-    return result === "granted";
-  }, []);
-
-  // Show browser notification for new unread items
+  // Show sonner toast for new unread notifications
   useEffect(() => {
-    if (!("Notification" in window) || Notification.permission !== "granted") return;
-    
     const unreadNotifications = notifications.filter((n) => !n.is_read);
     
     for (const n of unreadNotifications) {
       if (shownNotificationIds.current.has(n.id)) continue;
       
-      // Show if created in last 6 minutes (covers cron 5min + polling 15s)
       const age = Date.now() - new Date(n.created_at).getTime();
       if (age < 360000) {
         shownNotificationIds.current.add(n.id);
-        new window.Notification(n.title, {
-          body: n.message,
-          icon: "/favicon.ico",
-          tag: n.id,
+        toast(n.title, {
+          description: n.message,
+          duration: 6000,
         });
       }
     }
@@ -106,6 +95,5 @@ export function useNotifications() {
     markAsRead: markAsRead.mutate,
     markAllAsRead: markAllAsRead.mutate,
     deleteNotification: deleteNotification.mutate,
-    requestPushPermission,
   };
 }
