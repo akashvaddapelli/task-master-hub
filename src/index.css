@@ -48,44 +48,44 @@
   }
 
   /* ═══════════════════════════════════════════
-     SPIDERMAN THEME — Vibrant red & deep blue, heroic energy
+     SPIDERMAN THEME — Bright red & blue, heroic, like the suit
      ═══════════════════════════════════════════ */
   :root.theme-spiderman {
-    --background: 220 30% 6%;
-    --foreground: 0 0% 95%;
-    --card: 220 25% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 220 25% 10%;
-    --popover-foreground: 0 0% 95%;
+    --background: 220 60% 96%;
+    --foreground: 220 50% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 50% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 50% 12%;
     --primary: 0 85% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 60% 25%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 220 20% 14%;
-    --muted-foreground: 220 15% 55%;
+    --secondary: 220 75% 52%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 40% 90%;
+    --muted-foreground: 220 25% 40%;
     --accent: 220 80% 55%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 18%;
-    --input: 220 20% 15%;
+    --border: 220 40% 82%;
+    --input: 220 35% 88%;
     --ring: 0 85% 50%;
-    --radius: 0.75rem;
+    --radius: 0.875rem;
     --success: 140 65% 42%;
     --success-foreground: 0 0% 100%;
     --warning: 35 95% 55%;
-    --warning-foreground: 0 0% 0%;
-    --shadow-sm: 0 2px 8px 0 hsl(0 85% 50% / 0.1), 0 1px 3px -1px hsl(0 0% 0% / 0.4);
-    --shadow-md: 0 4px 16px -2px hsl(0 85% 50% / 0.15), 0 2px 6px -2px hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 10px 30px -5px hsl(0 85% 50% / 0.2), 0 4px 10px -4px hsl(0 0% 0% / 0.5);
-    --shadow-xl: 0 20px 50px -8px hsl(0 85% 50% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.5);
-    --sidebar-background: 220 25% 8%;
-    --sidebar-foreground: 0 0% 95%;
+    --warning-foreground: 35 90% 14%;
+    --shadow-sm: 0 2px 8px 0 hsl(0 85% 50% / 0.08), 0 1px 4px -1px hsl(220 60% 30% / 0.08);
+    --shadow-md: 0 4px 14px -2px hsl(0 85% 50% / 0.12), 0 2px 8px -2px hsl(220 60% 30% / 0.08);
+    --shadow-lg: 0 10px 28px -5px hsl(0 85% 50% / 0.16), 0 4px 12px -4px hsl(220 60% 30% / 0.1);
+    --shadow-xl: 0 20px 45px -8px hsl(0 85% 50% / 0.2), 0 8px 20px -6px hsl(220 60% 30% / 0.1);
+    --sidebar-background: 220 55% 94%;
+    --sidebar-foreground: 220 50% 12%;
     --sidebar-primary: 0 85% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 14%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 20% 18%;
+    --sidebar-accent: 220 45% 88%;
+    --sidebar-accent-foreground: 220 50% 12%;
+    --sidebar-border: 220 40% 82%;
     --sidebar-ring: 0 85% 50%;
   }
 }
@@ -146,14 +146,14 @@
     radial-gradient(ellipse 100px 60px at 60% 10%, hsl(275 80% 55% / 0.03) 0%, transparent 70%);
 }
 
-/* Spiderman — web-like grid pattern */
+/* Spiderman — web-like diagonal pattern on light blue bg */
 :root.theme-spiderman .min-h-screen {
   background-image: 
-    linear-gradient(30deg, hsl(0 85% 50% / 0.03) 1px, transparent 1px),
-    linear-gradient(-30deg, hsl(0 85% 50% / 0.03) 1px, transparent 1px),
-    linear-gradient(hsl(220 80% 55% / 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(220 80% 55% / 0.02) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 60px 60px, 60px 60px;
+    linear-gradient(30deg, hsl(0 85% 50% / 0.04) 1px, transparent 1px),
+    linear-gradient(-30deg, hsl(0 85% 50% / 0.04) 1px, transparent 1px),
+    radial-gradient(ellipse 150px 100px at 80% 20%, hsl(220 75% 52% / 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 120px 80px at 20% 80%, hsl(0 85% 50% / 0.06) 0%, transparent 70%);
+  background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
 }
 
 /* ═══════════════════════════════════════════
@@ -229,9 +229,13 @@
   border-radius: 0.75rem;
 }
 
-/* Spiderman — slightly rounded, bold borders */
+/* Spiderman — rounded, bold, heroic borders */
 :root.theme-spiderman .rounded-2xl {
-  border-radius: 0.75rem;
+  border-radius: 0.875rem;
+}
+:root.theme-spiderman .border-2 {
+  border-width: 2px;
+  border-style: solid;
 }
 
 /* ═══════════════════════════════════════════
@@ -270,10 +274,10 @@
   border-bottom-width: 1px;
 }
 
-/* Spiderman — dark blue with red accent line */
+/* Spiderman — bright white/blue header with bold red accent */
 :root.theme-spiderman header.sticky {
-  background: linear-gradient(180deg, hsl(220 25% 7% / 0.97) 0%, hsl(220 25% 10% / 0.95) 100%);
-  border-bottom-color: hsl(0 85% 50% / 0.3);
+  background: linear-gradient(180deg, hsl(220 60% 97% / 0.97) 0%, hsl(0 0% 100% / 0.95) 100%);
+  border-bottom-color: hsl(0 85% 50% / 0.35);
   border-bottom-width: 2px;
 }
 
