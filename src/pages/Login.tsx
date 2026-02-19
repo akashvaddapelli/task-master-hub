@@ -31,7 +31,7 @@ const Login = () => {
     }
   };
 
-  const welcomeEmoji = theme === "shinchan" ? "👋" : theme === "doraemon" ? "🔔" : "⚡";
+  const isVenom = theme === "venom";
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -47,7 +47,7 @@ const Login = () => {
         </div>
         <Card className="shadow-theme-xl border-2 border-primary/15 rounded-2xl">
           <CardHeader className="text-center pb-2">
-            <div className="text-4xl mb-2">{welcomeEmoji}</div>
+            <div className="text-4xl mb-2">{isVenom ? "🕷️" : "🕸️"}</div>
             <CardTitle className="text-2xl font-bold">{branding.loginWelcome}</CardTitle>
             <CardDescription className="font-medium">{branding.loginSubtext}</CardDescription>
           </CardHeader>
@@ -55,7 +55,7 @@ const Login = () => {
             <CardContent className="space-y-5 pt-4">
               <div className="space-y-2">
                 <Label htmlFor="email" className="font-bold">
-                  {theme === "benten" ? "Agent ID" : "Email"} {theme === "benten" ? "📡" : "✉️"}
+                  {isVenom ? "Host ID" : "Email"} {isVenom ? "🕷️" : "✉️"}
                 </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -64,7 +64,7 @@ const Login = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password" className="font-bold">
-                  {theme === "benten" ? "Access Code" : "Password"} {theme === "benten" ? "🔐" : "🔒"}
+                  {isVenom ? "Symbiote Key" : "Password"} {isVenom ? "🔐" : "🔒"}
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -74,12 +74,12 @@ const Login = () => {
             </CardContent>
             <CardFooter className="flex-col gap-4 pt-2">
               <Button type="submit" className="w-full h-11 text-base rounded-full shadow-theme-md hover-glow press-effect" disabled={loading}>
-                {loading ? (theme === "benten" ? "Authenticating... ⏳" : "Signing in… ⏳") : branding.ctaLogin}
+                {loading ? "Connecting... ⏳" : branding.ctaLogin}
               </Button>
               <p className="text-sm text-muted-foreground font-medium">
-                {theme === "benten" ? "New operative? " : "New here? "}
+                {isVenom ? "New host? " : "New here? "}
                 <Link to="/register" className="font-bold text-primary hover:underline">
-                  {theme === "benten" ? "Register ⚡" : "Create account! ✨"}
+                  {isVenom ? "Bond now 🕷️" : "Create account! 🕸️"}
                 </Link>
               </p>
             </CardFooter>

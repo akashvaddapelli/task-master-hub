@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Fredoka", "Comic Neue", "system-ui", "sans-serif"],
-        mono: ["Comic Neue", "monospace"],
+        sans: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        mono: ["Rajdhani", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

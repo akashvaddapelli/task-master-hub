@@ -4,13 +4,16 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Shield, BarChart3, Star } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
-import shinchanHero from "@/assets/shinchan-hero.png";
+import venomHero from "@/assets/venom-hero.png";
+import spidermanHero from "@/assets/spiderman-hero.png";
 
 const featureIcons = [Zap, Shield, BarChart3];
 
 const Index = () => {
   const { user } = useAuth();
   const { theme, branding } = useTheme();
+
+  const heroImage = theme === "venom" ? venomHero : spidermanHero;
 
   const features = branding.featureTitles.map((title, i) => ({
     icon: featureIcons[i],
@@ -53,7 +56,7 @@ const Index = () => {
         <div className="mx-auto max-w-4xl flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 text-center md:text-left animate-fade-in">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border-2 border-primary/20 bg-card px-4 py-2 text-sm font-semibold text-muted-foreground shadow-theme-sm hover-lift cursor-default">
-              <Star className="h-4 w-4 text-secondary" />
+              <Star className="h-4 w-4 text-primary" />
               {branding.heroTagline}
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.1]">
@@ -78,9 +81,9 @@ const Index = () => {
           </div>
           <div className="flex-shrink-0 animate-bounce-in">
             <img
-              src={shinchanHero}
+              src={heroImage}
               alt="Hero character"
-              className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-3xl shadow-theme-xl border-4 border-primary/20 hover-lift cursor-default"
+              className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-3xl shadow-theme-xl border-4 border-primary/20 hover-lift cursor-default object-cover"
             />
           </div>
         </div>
@@ -89,7 +92,7 @@ const Index = () => {
       {/* Features */}
       <section className="container pb-20 sm:pb-28">
         <h2 className="text-center text-2xl font-bold text-foreground mb-10">
-          {theme === "benten" ? `${branding.name} Capabilities` : `Why ${branding.name} is Awesome! ✨`}
+          {branding.name} Capabilities
         </h2>
         <div className="mx-auto grid max-w-5xl gap-6 sm:gap-8 md:grid-cols-3">
           {features.map((f, i) => (
@@ -98,7 +101,7 @@ const Index = () => {
               className="group rounded-2xl border-2 border-primary/10 bg-card p-7 sm:p-8 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in"
               style={{ animationDelay: `${i * 120}ms` }}
             >
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/50 shadow-theme-sm transition-all duration-300 group-hover:bg-secondary group-hover:scale-110 group-hover:rotate-3">
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary/50 shadow-theme-sm transition-all duration-300 group-hover:bg-secondary group-hover:scale-110">
                 <f.icon className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
               </div>
               <h3 className="mb-2 text-lg font-bold text-card-foreground">{f.title}</h3>

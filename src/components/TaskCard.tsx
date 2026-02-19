@@ -14,20 +14,15 @@ interface TaskCardProps {
 }
 
 const priorityConfigs: Record<AnimeTheme, Record<string, { style: string; border: string; emoji: string; label: string }>> = {
-  shinchan: {
-    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🔥", label: "Urgent!" },
-    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "😤", label: "Do it!" },
-    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "😌", label: "Chill" },
+  venom: {
+    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "💀", label: "LETHAL" },
+    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "🕷️", label: "HOSTILE" },
+    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "🌑", label: "DORMANT" },
   },
-  doraemon: {
-    high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🚨", label: "Emergency!" },
-    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "🔔", label: "Gadget time!" },
-    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "☁️", label: "Relax~" },
-  },
-  benten: {
+  spiderman: {
     high: { style: "bg-destructive/10 text-destructive border-destructive/30", border: "border-l-destructive", emoji: "🔴", label: "CRITICAL" },
-    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "🟡", label: "STANDARD" },
-    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "🟢", label: "LOW" },
+    medium: { style: "bg-warning/10 text-warning border-warning/30", border: "border-l-warning", emoji: "⚡", label: "ACTIVE" },
+    low: { style: "bg-success/10 text-success border-success/30", border: "border-l-success", emoji: "🔵", label: "PATROL" },
   },
 };
 
@@ -36,7 +31,7 @@ const TaskCard = ({ task, onToggle, onEdit, onDelete }: TaskCardProps) => {
   const isCompleted = task.status === "completed";
   const p = priorityConfigs[theme][task.priority];
 
-  const completedPrefix = theme === "benten" ? "✅ " : theme === "doraemon" ? "⭐ " : "✅ ";
+  const completedPrefix = theme === "venom" ? "☠️ " : "✅ ";
 
   return (
     <div
@@ -44,9 +39,8 @@ const TaskCard = ({ task, onToggle, onEdit, onDelete }: TaskCardProps) => {
         group relative flex items-start gap-4 rounded-2xl border-2 border-l-4 bg-card p-5
         shadow-theme-sm transition-all duration-300
         hover:shadow-theme-lg hover:-translate-y-1
-        ${theme === "shinchan" ? "hover:rotate-[0.3deg]" : ""}
-        ${theme === "benten" ? "hover:scale-[1.01]" : ""}
-        active:shadow-theme-md active:translate-y-0 active:rotate-0
+        ${theme === "venom" ? "hover:scale-[1.01]" : ""}
+        active:shadow-theme-md active:translate-y-0
         ${p.border}
         ${isCompleted ? "opacity-50" : ""}
         animate-fade-in
