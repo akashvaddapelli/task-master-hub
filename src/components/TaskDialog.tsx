@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Task } from "@/lib/tasks";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,16 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
   const [priority, setPriority] = useState<"low" | "medium" | "high">(task?.priority ?? "medium");
   const [dueDate, setDueDate] = useState(task?.due_date ?? "");
   const [dueTime, setDueTime] = useState((task as any)?.due_time ?? "");
+
+  useEffect(() => {
+    if (open) {
+      setTitle(task?.title ?? "");
+      setDescription(task?.description ?? "");
+      setPriority(task?.priority ?? "medium");
+      setDueDate(task?.due_date ?? "");
+      setDueTime((task as any)?.due_time ?? "");
+    }
+  }, [open, task]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
