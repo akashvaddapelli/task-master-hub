@@ -6,14 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Flag, CalendarDays, Type, AlignLeft, Plus } from "lucide-react";
+import { Flag, CalendarDays, Type, AlignLeft, Plus, Clock } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 
 interface TaskDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   task?: Task | null;
-  onSave: (data: { title: string; description: string; priority: "low" | "medium" | "high"; due_date: string | null }) => void;
+  onSave: (data: { title: string; description: string; priority: "low" | "medium" | "high"; due_date: string | null; due_time: string | null }) => void;
   loading?: boolean;
 }
 
@@ -23,10 +23,11 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
   const [description, setDescription] = useState(task?.description ?? "");
   const [priority, setPriority] = useState<"low" | "medium" | "high">(task?.priority ?? "medium");
   const [dueDate, setDueDate] = useState(task?.due_date ?? "");
+  const [dueTime, setDueTime] = useState((task as any)?.due_time ?? "");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ title, description, priority, due_date: dueDate || null });
+    onSave({ title, description, priority, due_date: dueDate || null, due_time: dueTime || null });
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -35,6 +36,7 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
       setDescription(task?.description ?? "");
       setPriority(task?.priority ?? "medium");
       setDueDate(task?.due_date ?? "");
+      setDueTime((task as any)?.due_time ?? "");
     }
     onOpenChange(open);
   };
@@ -86,6 +88,12 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
               </Label>
               <Input id="due_date" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="h-10 text-sm rounded-xl border shadow-theme-sm focus:shadow-theme-md transition-all duration-200" />
             </div>
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="due_time" className="text-sm font-semibold flex items-center gap-2">
+              <Clock className="h-4 w-4 text-primary" /> Time
+            </Label>
+            <Input id="due_time" type="time" value={dueTime} onChange={(e) => setDueTime(e.target.value)} className="h-10 text-sm rounded-xl border shadow-theme-sm focus:shadow-theme-md transition-all duration-200" />
           </div>
           <DialogFooter className="pt-3 border-t gap-3">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="h-10 px-5 text-sm rounded-full border hover-lift press-effect">{branding.cancelLabel}</Button>
