@@ -11,6 +11,7 @@ import { Plus, LogOut, Search, ListFilter, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import NotificationBell from "@/components/NotificationBell";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const Dashboard = () => {
@@ -29,7 +30,7 @@ const Dashboard = () => {
   });
 
   const createMutation = useMutation({
-    mutationFn: (data: { title: string; description: string; priority: "low" | "medium" | "high"; due_date: string | null }) =>
+    mutationFn: (data: { title: string; description: string; priority: "low" | "medium" | "high"; due_date: string | null; due_time: string | null }) =>
       createTask({ ...data, user_id: user!.id, status: "pending" }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
@@ -86,8 +87,9 @@ const Dashboard = () => {
               {branding.name}
             </Link>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
+          <div className="flex items-center gap-2">
+              <NotificationBell />
+              <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
               {user?.email?.split("@")[0]}
             </span>
             <Button
