@@ -23,6 +23,8 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "pending" | "completed">("all");
 
+  const isVenom = theme === "venom";
+
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTasks,
@@ -69,30 +71,17 @@ const Dashboard = () => {
     pending: tasks.filter((t) => t.status === "pending").length,
   };
 
-  const statConfigs = {
-    shinchan: [
-      { label: "Total Tasks", emoji: "📋", color: "border-primary/30 bg-primary/5" },
-      { label: "In Progress", emoji: "🔥", color: "border-warning/30 bg-warning/5" },
-      { label: "Completed", emoji: "🏆", color: "border-success/30 bg-success/5" },
-    ],
-    doraemon: [
-      { label: "All Quests", emoji: "🔔", color: "border-primary/20 bg-primary/5" },
-      { label: "Active", emoji: "🌀", color: "border-warning/20 bg-warning/5" },
-      { label: "Solved!", emoji: "⭐", color: "border-success/20 bg-success/5" },
-    ],
-    benten: [
-      { label: "Total Ops", emoji: "📡", color: "border-primary/20 bg-primary/5" },
-      { label: "Active", emoji: "⚡", color: "border-warning/20 bg-warning/5" },
-      { label: "Complete", emoji: "✅", color: "border-success/20 bg-success/5" },
-    ],
-  };
-
-  const currentStats = statConfigs[theme];
-  const statItems = [
-    { ...currentStats[0], value: stats.total },
-    { ...currentStats[1], value: stats.pending },
-    { ...currentStats[2], value: stats.completed },
-  ];
+  const statItems = isVenom
+    ? [
+        { label: "Total Hunts", emoji: "🕷️", color: "border-primary/30 bg-primary/5", value: stats.total },
+        { label: "Active", emoji: "💀", color: "border-warning/30 bg-warning/5", value: stats.pending },
+        { label: "Consumed", emoji: "☠️", color: "border-success/30 bg-success/5", value: stats.completed },
+      ]
+    : [
+        { label: "Total Missions", emoji: "🕸️", color: "border-primary/20 bg-primary/5", value: stats.total },
+        { label: "In Progress", emoji: "⚡", color: "border-warning/20 bg-warning/5", value: stats.pending },
+        { label: "Completed", emoji: "✅", color: "border-success/20 bg-success/5", value: stats.completed },
+      ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -107,8 +96,8 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
-              {theme === "benten" ? `Agent ${user?.email?.split("@")[0]}` : `Hey, ${user?.email?.split("@")[0]}!`} 
-              {theme === "shinchan" ? " 👋" : theme === "doraemon" ? " 🔔" : " 🛡️"}
+              {isVenom ? `Host: ${user?.email?.split("@")[0]}` : `Hey, ${user?.email?.split("@")[0]}!`}
+              {isVenom ? " 🕷️" : " 🕸️"}
             </span>
             <Button
               variant="outline"
@@ -128,7 +117,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-3 mb-1">
             <span className="text-3xl">{branding.emoji}</span>
             <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-              {theme === "benten" ? `${branding.missionWord} Control` : `My ${branding.missionWord} Board!`}
+              {isVenom ? "Hunt Control" : "Mission Control"}
             </h1>
           </div>
           <p className="text-muted-foreground ml-12">{branding.tagline}</p>
@@ -167,9 +156,9 @@ const Dashboard = () => {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="shadow-theme-lg rounded-xl">
-                <SelectItem value="all">{theme === "benten" ? "All Ops" : "All Tasks"}</SelectItem>
-                <SelectItem value="pending">{theme === "benten" ? "Active ⚡" : "Pending ⏳"}</SelectItem>
-                <SelectItem value="completed">{theme === "benten" ? "Complete ✅" : "Done! ✅"}</SelectItem>
+                <SelectItem value="all">{isVenom ? "All Hunts" : "All Missions"}</SelectItem>
+                <SelectItem value="pending">{isVenom ? "Active 💀" : "Active ⚡"}</SelectItem>
+                <SelectItem value="completed">{isVenom ? "Consumed ☠️" : "Done ✅"}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -177,7 +166,7 @@ const Dashboard = () => {
             onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             className="h-11 px-6 shadow-theme-md hover-glow press-effect rounded-full text-base"
           >
-            <Plus className="mr-2 h-5 w-5" /> New {branding.missionWord}!
+            <Plus className="mr-2 h-5 w-5" /> New {branding.missionWord}
           </Button>
         </div>
 

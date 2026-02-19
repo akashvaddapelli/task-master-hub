@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@400;700&family=Quicksand:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,167 +6,87 @@
 
 @layer base {
   /* ═══════════════════════════════════════════
-     SHINCHAN THEME — Playful crayon, warm & bouncy
+     VENOM THEME — Pure darkness, symbiote tendrils, purple glow
      ═══════════════════════════════════════════ */
   :root {
-    --background: 47 100% 96%;
-    --foreground: 350 60% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 350 60% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 350 60% 15%;
-    --primary: 0 80% 55%;
+    --background: 270 20% 4%;
+    --foreground: 270 20% 90%;
+    --card: 270 15% 8%;
+    --card-foreground: 270 20% 90%;
+    --popover: 270 15% 8%;
+    --popover-foreground: 270 20% 90%;
+    --primary: 275 80% 55%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 47 95% 65%;
-    --secondary-foreground: 350 60% 15%;
-    --muted: 47 60% 90%;
-    --muted-foreground: 350 20% 40%;
-    --accent: 210 85% 55%;
+    --secondary: 270 30% 15%;
+    --secondary-foreground: 270 20% 85%;
+    --muted: 270 12% 14%;
+    --muted-foreground: 270 15% 50%;
+    --accent: 300 70% 50%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 51%;
+    --destructive: 0 65% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 47 40% 82%;
-    --input: 47 40% 85%;
-    --ring: 0 80% 55%;
-    --radius: 1rem;
-    --success: 140 65% 42%;
+    --border: 270 15% 16%;
+    --input: 270 15% 14%;
+    --ring: 275 80% 55%;
+    --radius: 0.625rem;
+    --success: 160 70% 40%;
     --success-foreground: 0 0% 100%;
-    --warning: 35 95% 55%;
-    --warning-foreground: 35 90% 14%;
-    --shadow-sm: 0 2px 8px 0 hsl(0 80% 55% / 0.08), 0 1px 3px -1px hsl(47 60% 30% / 0.1);
-    --shadow-md: 0 4px 12px -2px hsl(0 80% 55% / 0.12), 0 2px 6px -2px hsl(47 60% 30% / 0.08);
-    --shadow-lg: 0 10px 25px -5px hsl(0 80% 55% / 0.15), 0 4px 10px -4px hsl(47 60% 30% / 0.1);
-    --shadow-xl: 0 20px 40px -8px hsl(0 80% 55% / 0.18), 0 8px 16px -6px hsl(47 60% 30% / 0.1);
-    --sidebar-background: 47 100% 94%;
-    --sidebar-foreground: 350 60% 15%;
-    --sidebar-primary: 0 80% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 47 80% 88%;
-    --sidebar-accent-foreground: 350 60% 15%;
-    --sidebar-border: 47 40% 82%;
-    --sidebar-ring: 0 80% 55%;
-  }
-
-  /* ═══════════════════════════════════════════
-     DORAEMON THEME — Dreamy sky blue, soft, magical
-     ═══════════════════════════════════════════ */
-  :root.theme-doraemon {
-    --background: 200 70% 96%;
-    --foreground: 215 50% 15%;
-    --card: 200 50% 99%;
-    --card-foreground: 215 50% 15%;
-    --popover: 200 50% 99%;
-    --popover-foreground: 215 50% 15%;
-    --primary: 210 85% 52%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 72% 58%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 200 40% 90%;
-    --muted-foreground: 215 25% 40%;
-    --accent: 45 90% 55%;
-    --accent-foreground: 45 85% 12%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 200 40% 82%;
-    --input: 200 40% 86%;
-    --ring: 210 85% 52%;
-    --radius: 1.25rem;
-    --success: 160 55% 42%;
-    --success-foreground: 0 0% 100%;
-    --warning: 35 85% 52%;
-    --warning-foreground: 35 85% 14%;
-    --shadow-sm: 0 2px 10px 0 hsl(210 85% 52% / 0.08), 0 1px 4px -1px hsl(200 40% 50% / 0.06);
-    --shadow-md: 0 4px 16px -2px hsl(210 85% 52% / 0.1), 0 2px 8px -2px hsl(200 40% 50% / 0.06);
-    --shadow-lg: 0 12px 30px -5px hsl(210 85% 52% / 0.14), 0 4px 12px -4px hsl(200 40% 50% / 0.08);
-    --shadow-xl: 0 24px 48px -8px hsl(210 85% 52% / 0.16), 0 8px 20px -6px hsl(200 40% 50% / 0.08);
-    --sidebar-background: 200 55% 94%;
-    --sidebar-foreground: 215 50% 15%;
-    --sidebar-primary: 210 85% 52%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 45% 88%;
-    --sidebar-accent-foreground: 215 50% 15%;
-    --sidebar-border: 200 40% 82%;
-    --sidebar-ring: 210 85% 52%;
-  }
-
-  /* ═══════════════════════════════════════════
-     BEN 10 THEME — Dark alien tech, neon glow
-     ═══════════════════════════════════════════ */
-  :root.theme-benten {
-    --background: 140 15% 6%;
-    --foreground: 120 30% 88%;
-    --card: 140 12% 10%;
-    --card-foreground: 120 30% 88%;
-    --popover: 140 12% 10%;
-    --popover-foreground: 120 30% 88%;
-    --primary: 140 100% 42%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 160 60% 22%;
-    --secondary-foreground: 120 30% 88%;
-    --muted: 140 8% 16%;
-    --muted-foreground: 120 15% 50%;
-    --accent: 80 85% 48%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 65% 42%;
-    --destructive-foreground: 120 30% 88%;
-    --border: 140 12% 20%;
-    --input: 140 12% 18%;
-    --ring: 140 100% 42%;
-    --radius: 0.5rem;
-    --success: 140 100% 42%;
-    --success-foreground: 0 0% 0%;
-    --warning: 45 85% 48%;
+    --warning: 45 85% 50%;
     --warning-foreground: 0 0% 0%;
-    --shadow-sm: 0 2px 8px 0 hsl(140 100% 42% / 0.06), 0 1px 3px -1px hsl(0 0% 0% / 0.4);
-    --shadow-md: 0 4px 16px -2px hsl(140 100% 42% / 0.1), 0 2px 6px -2px hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 10px 30px -5px hsl(140 100% 42% / 0.15), 0 4px 10px -4px hsl(0 0% 0% / 0.5);
-    --shadow-xl: 0 20px 50px -8px hsl(140 100% 42% / 0.2), 0 8px 16px -6px hsl(0 0% 0% / 0.5);
-    --sidebar-background: 140 12% 8%;
-    --sidebar-foreground: 120 30% 88%;
-    --sidebar-primary: 140 100% 42%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 140 8% 14%;
-    --sidebar-accent-foreground: 120 30% 88%;
-    --sidebar-border: 140 12% 20%;
-    --sidebar-ring: 140 100% 42%;
+    --shadow-sm: 0 2px 8px 0 hsl(275 80% 55% / 0.08), 0 1px 3px -1px hsl(0 0% 0% / 0.5);
+    --shadow-md: 0 4px 16px -2px hsl(275 80% 55% / 0.12), 0 2px 6px -2px hsl(0 0% 0% / 0.5);
+    --shadow-lg: 0 10px 30px -5px hsl(275 80% 55% / 0.18), 0 4px 10px -4px hsl(0 0% 0% / 0.6);
+    --shadow-xl: 0 20px 50px -8px hsl(275 80% 55% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.6);
+    --sidebar-background: 270 15% 6%;
+    --sidebar-foreground: 270 20% 90%;
+    --sidebar-primary: 275 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 270 12% 12%;
+    --sidebar-accent-foreground: 270 20% 90%;
+    --sidebar-border: 270 15% 16%;
+    --sidebar-ring: 275 80% 55%;
   }
 
-  .dark {
-    --background: 350 30% 10%;
-    --foreground: 47 90% 92%;
-    --card: 350 25% 14%;
-    --card-foreground: 47 90% 92%;
-    --popover: 350 25% 14%;
-    --popover-foreground: 47 90% 92%;
-    --primary: 0 75% 58%;
+  /* ═══════════════════════════════════════════
+     SPIDERMAN THEME — Vibrant red & deep blue, heroic energy
+     ═══════════════════════════════════════════ */
+  :root.theme-spiderman {
+    --background: 220 30% 6%;
+    --foreground: 0 0% 95%;
+    --card: 220 25% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 85% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 47 60% 25%;
-    --secondary-foreground: 47 90% 92%;
-    --muted: 350 20% 20%;
-    --muted-foreground: 47 30% 60%;
-    --accent: 210 80% 58%;
+    --secondary: 220 60% 25%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 20% 14%;
+    --muted-foreground: 220 15% 55%;
+    --accent: 220 80% 55%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 47 90% 92%;
-    --border: 350 20% 22%;
-    --input: 350 20% 22%;
-    --ring: 0 75% 58%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 18%;
+    --input: 220 20% 15%;
+    --ring: 0 85% 50%;
+    --radius: 0.75rem;
     --success: 140 65% 42%;
     --success-foreground: 0 0% 100%;
     --warning: 35 95% 55%;
-    --warning-foreground: 0 0% 100%;
-    --shadow-sm: 0 2px 8px 0 hsl(0 0% 0% / 0.3);
-    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 10px 25px -5px hsl(0 0% 0% / 0.45);
-    --shadow-xl: 0 20px 40px -8px hsl(0 0% 0% / 0.5);
-    --sidebar-background: 350 25% 12%;
-    --sidebar-foreground: 47 90% 92%;
-    --sidebar-primary: 0 75% 58%;
+    --warning-foreground: 0 0% 0%;
+    --shadow-sm: 0 2px 8px 0 hsl(0 85% 50% / 0.1), 0 1px 3px -1px hsl(0 0% 0% / 0.4);
+    --shadow-md: 0 4px 16px -2px hsl(0 85% 50% / 0.15), 0 2px 6px -2px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 30px -5px hsl(0 85% 50% / 0.2), 0 4px 10px -4px hsl(0 0% 0% / 0.5);
+    --shadow-xl: 0 20px 50px -8px hsl(0 85% 50% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.5);
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 85% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 350 20% 18%;
-    --sidebar-accent-foreground: 47 90% 92%;
-    --sidebar-border: 350 20% 22%;
-    --sidebar-ring: 0 75% 58%;
+    --sidebar-accent: 220 20% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 0 85% 50%;
   }
 }
 
@@ -179,35 +99,37 @@
   }
 
   html {
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
-  /* Shinchan — rounded playful */
-  :root.theme-shinchan body,
-  :root:not(.theme-doraemon):not(.theme-benten) body {
-    font-family: 'Fredoka', 'Comic Neue', system-ui, sans-serif;
+  /* Venom — dark, heavy, menacing */
+  :root:not(.theme-spiderman) body {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+  :root:not(.theme-spiderman) h1,
+  :root:not(.theme-spiderman) h2,
+  :root:not(.theme-spiderman) h3 {
+    font-family: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
-  /* Doraemon — friendly rounded */
-  :root.theme-doraemon body {
-    font-family: 'Quicksand', 'Fredoka', system-ui, sans-serif;
+  /* Spiderman — bold, energetic, heroic */
+  :root.theme-spiderman body {
+    font-family: 'Rajdhani', 'Inter', system-ui, sans-serif;
+    letter-spacing: 0.015em;
   }
-
-  /* Ben 10 — tech sharp */
-  :root.theme-benten body {
-    font-family: 'Rajdhani', 'Orbitron', system-ui, sans-serif;
-    letter-spacing: 0.02em;
-  }
-  :root.theme-benten h1,
-  :root.theme-benten h2,
-  :root.theme-benten h3 {
-    font-family: 'Orbitron', 'Rajdhani', system-ui, sans-serif;
-    letter-spacing: 0.05em;
+  :root.theme-spiderman h1,
+  :root.theme-spiderman h2,
+  :root.theme-spiderman h3 {
+    font-family: 'Bebas Neue', 'Rajdhani', system-ui, sans-serif;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 }
@@ -216,177 +138,201 @@
    PER-THEME BACKGROUND TEXTURES
    ═══════════════════════════════════════════ */
 
-/* Shinchan — subtle crayon dots */
-:root.theme-shinchan .min-h-screen,
-:root:not(.theme-doraemon):not(.theme-benten) .min-h-screen {
-  background-image: radial-gradient(circle, hsl(0 80% 55% / 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Doraemon — soft cloud-like pattern */
-:root.theme-doraemon .min-h-screen {
+/* Venom — dark symbiote tendrils / organic noise */
+:root:not(.theme-spiderman) .min-h-screen {
   background-image: 
-    radial-gradient(ellipse 80px 60px at 20% 30%, hsl(200 70% 90% / 0.4) 0%, transparent 70%),
-    radial-gradient(ellipse 60px 45px at 70% 60%, hsl(200 70% 90% / 0.3) 0%, transparent 70%),
-    radial-gradient(ellipse 100px 70px at 85% 20%, hsl(200 70% 90% / 0.35) 0%, transparent 70%);
+    radial-gradient(ellipse 120px 80px at 15% 25%, hsl(275 80% 55% / 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 80px 120px at 80% 70%, hsl(300 70% 50% / 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 100px 60px at 60% 10%, hsl(275 80% 55% / 0.03) 0%, transparent 70%);
 }
 
-/* Ben 10 — matrix/circuit grid */
-:root.theme-benten .min-h-screen {
+/* Spiderman — web-like grid pattern */
+:root.theme-spiderman .min-h-screen {
   background-image: 
-    linear-gradient(hsl(140 100% 42% / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(140 100% 42% / 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* ═══════════════════════════════════════════
-   PER-THEME BORDER STYLES
-   ═══════════════════════════════════════════ */
-
-/* Doraemon — softer, rounder borders */
-:root.theme-doraemon .border-2 {
-  border-width: 2px;
-  border-style: solid;
-}
-
-/* Ben 10 — thin sharp borders with subtle glow */
-:root.theme-benten .border-2 {
-  border-width: 1px;
-}
-:root.theme-benten .border-l-4 {
-  border-left-width: 3px;
+    linear-gradient(30deg, hsl(0 85% 50% / 0.03) 1px, transparent 1px),
+    linear-gradient(-30deg, hsl(0 85% 50% / 0.03) 1px, transparent 1px),
+    linear-gradient(hsl(220 80% 55% / 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(220 80% 55% / 0.02) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 60px 60px, 60px 60px;
 }
 
 /* ═══════════════════════════════════════════
    PER-THEME HOVER & INTERACTION OVERRIDES
    ═══════════════════════════════════════════ */
 
-/* --- Shinchan hover: playful rotate + lift (default) --- */
-
-/* --- Doraemon hover: gentle float with dreamy glow --- */
-:root.theme-doraemon .hover-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg), 0 0 20px hsl(210 85% 52% / 0.12);
+/* --- Venom hover: menacing scale + purple glow --- */
+:root:not(.theme-spiderman) .hover-lift:hover {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: var(--shadow-lg), 0 0 20px hsl(275 80% 55% / 0.15);
 }
-:root.theme-doraemon .hover-lift:active {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-:root.theme-doraemon .hover-glow:hover {
-  box-shadow: 0 0 28px hsl(210 85% 52% / 0.3), 0 0 8px hsl(210 85% 52% / 0.15);
-}
-
-/* --- Ben 10 hover: sharp scale + neon glow --- */
-:root.theme-benten .hover-lift:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: var(--shadow-lg), 0 0 16px hsl(140 100% 42% / 0.2), inset 0 0 1px hsl(140 100% 42% / 0.15);
-}
-:root.theme-benten .hover-lift:active {
+:root:not(.theme-spiderman) .hover-lift:active {
   transform: translateY(0) scale(0.98);
-  box-shadow: 0 0 8px hsl(140 100% 42% / 0.3);
+  box-shadow: 0 0 10px hsl(275 80% 55% / 0.25);
 }
-:root.theme-benten .hover-glow:hover {
-  box-shadow: 0 0 20px hsl(140 100% 42% / 0.4), 0 0 40px hsl(140 100% 42% / 0.15);
+:root:not(.theme-spiderman) .hover-glow:hover {
+  box-shadow: 0 0 24px hsl(275 80% 55% / 0.4), 0 0 48px hsl(275 80% 55% / 0.15);
 }
-:root.theme-benten .hover-glow:active {
-  box-shadow: 0 0 12px hsl(140 100% 42% / 0.5), 0 0 24px hsl(140 100% 42% / 0.2);
+:root:not(.theme-spiderman) .hover-glow:active {
+  box-shadow: 0 0 16px hsl(275 80% 55% / 0.5), 0 0 32px hsl(275 80% 55% / 0.2);
 }
 
-/* Ben 10 — neon border glow on cards */
-:root.theme-benten .bg-card {
-  border-color: hsl(140 100% 42% / 0.15);
+/* Venom — neon border glow on cards */
+:root:not(.theme-spiderman) .bg-card {
+  border-color: hsl(275 80% 55% / 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-:root.theme-benten .bg-card:hover {
-  border-color: hsl(140 100% 42% / 0.35);
+:root:not(.theme-spiderman) .bg-card:hover {
+  border-color: hsl(275 80% 55% / 0.3);
 }
 
-/* Doraemon — soft bell shimmer on cards */
-:root.theme-doraemon .bg-card {
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
+/* --- Spiderman hover: heroic lift + red glow --- */
+:root.theme-spiderman .hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), 0 0 20px hsl(0 85% 50% / 0.15);
 }
-:root.theme-doraemon .bg-card:hover {
-  box-shadow: var(--shadow-md), 0 0 16px hsl(210 85% 52% / 0.08);
+:root.theme-spiderman .hover-lift:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+:root.theme-spiderman .hover-glow:hover {
+  box-shadow: 0 0 24px hsl(0 85% 50% / 0.35), 0 0 8px hsl(220 80% 55% / 0.2);
+}
+:root.theme-spiderman .hover-glow:active {
+  box-shadow: 0 0 16px hsl(0 85% 50% / 0.4);
+}
+
+/* Spiderman — card glow */
+:root.theme-spiderman .bg-card {
+  border-color: hsl(0 85% 50% / 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+:root.theme-spiderman .bg-card:hover {
+  border-color: hsl(0 85% 50% / 0.25);
+  box-shadow: var(--shadow-md), 0 0 12px hsl(0 85% 50% / 0.08);
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME BORDER STYLES
+   ═══════════════════════════════════════════ */
+
+/* Venom — thin borders, angular */
+:root:not(.theme-spiderman) .border-2 {
+  border-width: 1px;
+}
+:root:not(.theme-spiderman) .border-l-4 {
+  border-left-width: 3px;
+}
+:root:not(.theme-spiderman) .rounded-2xl {
+  border-radius: 0.625rem;
+}
+:root:not(.theme-spiderman) .rounded-3xl {
+  border-radius: 0.75rem;
+}
+
+/* Spiderman — slightly rounded, bold borders */
+:root.theme-spiderman .rounded-2xl {
+  border-radius: 0.75rem;
 }
 
 /* ═══════════════════════════════════════════
    PER-THEME BUTTON OVERRIDES
    ═══════════════════════════════════════════ */
 
-/* Doraemon — rounded pill with soft shadow */
-:root.theme-doraemon .rounded-full {
-  border-radius: 9999px;
-}
-
-/* Ben 10 — sharp angular buttons */
-:root.theme-benten button.rounded-full,
-:root.theme-benten a.rounded-full,
-:root.theme-benten .rounded-full:not([class*="animate-spin"]) {
-  border-radius: 0.375rem;
-}
-:root.theme-benten .rounded-2xl {
+/* Venom — sharp, angular buttons with purple glow */
+:root:not(.theme-spiderman) button.rounded-full,
+:root:not(.theme-spiderman) a.rounded-full,
+:root:not(.theme-spiderman) .rounded-full:not([class*="animate-spin"]) {
   border-radius: 0.5rem;
 }
-:root.theme-benten .rounded-xl {
-  border-radius: 0.375rem;
+:root:not(.theme-spiderman) .bg-primary {
+  text-shadow: 0 0 10px hsl(275 80% 55% / 0.5);
 }
-:root.theme-benten .rounded-3xl {
-  border-radius: 0.5rem;
+:root:not(.theme-spiderman) .bg-primary:hover {
+  box-shadow: 0 0 20px hsl(275 80% 55% / 0.4), 0 0 40px hsl(275 80% 55% / 0.15);
 }
 
-/* Ben 10 primary button neon effect */
-:root.theme-benten .bg-primary {
-  text-shadow: 0 0 8px hsl(140 100% 42% / 0.5);
+/* Spiderman — web-styled buttons */
+:root.theme-spiderman .bg-primary {
+  text-shadow: 0 0 8px hsl(0 85% 50% / 0.4);
 }
-:root.theme-benten .bg-primary:hover {
-  box-shadow: 0 0 16px hsl(140 100% 42% / 0.4), 0 0 32px hsl(140 100% 42% / 0.15);
+:root.theme-spiderman .bg-primary:hover {
+  box-shadow: 0 0 16px hsl(0 85% 50% / 0.35), 0 0 32px hsl(0 85% 50% / 0.1);
 }
 
 /* ═══════════════════════════════════════════
    PER-THEME HEADER BAR
    ═══════════════════════════════════════════ */
 
-/* Doraemon — gradient sky header */
-:root.theme-doraemon header.sticky {
-  background: linear-gradient(180deg, hsl(200 70% 96% / 0.95) 0%, hsl(200 50% 99% / 0.9) 100%);
-  border-bottom-color: hsl(210 85% 52% / 0.15);
-}
-
-/* Ben 10 — dark tech header with green line */
-:root.theme-benten header.sticky {
-  background: linear-gradient(180deg, hsl(140 12% 8% / 0.97) 0%, hsl(140 12% 10% / 0.95) 100%);
-  border-bottom-color: hsl(140 100% 42% / 0.3);
+/* Venom — pure dark with purple accent line */
+:root:not(.theme-spiderman) header.sticky {
+  background: linear-gradient(180deg, hsl(270 15% 5% / 0.97) 0%, hsl(270 15% 8% / 0.95) 100%);
+  border-bottom-color: hsl(275 80% 55% / 0.25);
   border-bottom-width: 1px;
 }
 
-/* ═══════════════════════════════════════════
-   PER-THEME SPINNER / LOADING
-   ═══════════════════════════════════════════ */
-
-/* Ben 10 — pulsing omnitrix glow on spinner */
-:root.theme-benten .animate-spin {
-  filter: drop-shadow(0 0 6px hsl(140 100% 42% / 0.5));
-}
-
-/* Doraemon — soft blue glow on spinner */
-:root.theme-doraemon .animate-spin {
-  filter: drop-shadow(0 0 6px hsl(210 85% 52% / 0.4));
+/* Spiderman — dark blue with red accent line */
+:root.theme-spiderman header.sticky {
+  background: linear-gradient(180deg, hsl(220 25% 7% / 0.97) 0%, hsl(220 25% 10% / 0.95) 100%);
+  border-bottom-color: hsl(0 85% 50% / 0.3);
+  border-bottom-width: 2px;
 }
 
 /* ═══════════════════════════════════════════
    PER-THEME INPUT FOCUS
    ═══════════════════════════════════════════ */
 
-:root.theme-benten input:focus,
-:root.theme-benten textarea:focus {
-  box-shadow: 0 0 0 2px hsl(140 100% 42% / 0.2), 0 0 12px hsl(140 100% 42% / 0.1);
-  border-color: hsl(140 100% 42% / 0.5) !important;
+:root:not(.theme-spiderman) input:focus,
+:root:not(.theme-spiderman) textarea:focus {
+  box-shadow: 0 0 0 2px hsl(275 80% 55% / 0.2), 0 0 16px hsl(275 80% 55% / 0.1);
+  border-color: hsl(275 80% 55% / 0.5) !important;
 }
 
-:root.theme-doraemon input:focus,
-:root.theme-doraemon textarea:focus {
-  box-shadow: 0 0 0 3px hsl(210 85% 52% / 0.15), 0 0 16px hsl(210 85% 52% / 0.08);
-  border-color: hsl(210 85% 52% / 0.4) !important;
+:root.theme-spiderman input:focus,
+:root.theme-spiderman textarea:focus {
+  box-shadow: 0 0 0 2px hsl(0 85% 50% / 0.2), 0 0 12px hsl(0 85% 50% / 0.1);
+  border-color: hsl(0 85% 50% / 0.5) !important;
+}
+
+/* ═══════════════════════════════════════════
+   PER-THEME SPINNER / LOADING
+   ═══════════════════════════════════════════ */
+
+:root:not(.theme-spiderman) .animate-spin {
+  filter: drop-shadow(0 0 8px hsl(275 80% 55% / 0.5));
+}
+
+:root.theme-spiderman .animate-spin {
+  filter: drop-shadow(0 0 6px hsl(0 85% 50% / 0.5));
+}
+
+/* ═══════════════════════════════════════════
+   SYMBIOTE PULSE ANIMATION (Venom)
+   ═══════════════════════════════════════════ */
+@keyframes symbiote-pulse {
+  0%, 100% { box-shadow: 0 0 8px hsl(275 80% 55% / 0.2); }
+  50% { box-shadow: 0 0 24px hsl(275 80% 55% / 0.4), 0 0 48px hsl(300 70% 50% / 0.15); }
+}
+
+:root:not(.theme-spiderman) .shadow-theme-sm {
+  animation: symbiote-pulse 4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+:root:not(.theme-spiderman) .shadow-theme-sm:hover {
+  animation-play-state: running;
+}
+
+/* Web swing pulse (Spiderman) */
+@keyframes web-pulse {
+  0%, 100% { box-shadow: 0 0 6px hsl(0 85% 50% / 0.15); }
+  50% { box-shadow: 0 0 16px hsl(0 85% 50% / 0.3), 0 0 32px hsl(220 80% 55% / 0.1); }
+}
+
+:root.theme-spiderman .shadow-theme-sm {
+  animation: web-pulse 3s ease-in-out infinite;
+  animation-play-state: paused;
+}
+:root.theme-spiderman .shadow-theme-sm:hover {
+  animation-play-state: running;
 }
 
 /* ═══════════════════════════════════════════
@@ -409,11 +355,11 @@
     @apply transition-all duration-300 ease-out;
   }
   .hover-lift:hover {
-    transform: translateY(-4px) rotate(-0.5deg);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
   }
   .hover-lift:active {
-    transform: translateY(-1px) rotate(0deg);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
   }
   .hover-glow {
@@ -438,26 +384,12 @@
 
 @keyframes wiggle {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
 }
 
 @keyframes theme-ripple {
   0% { transform: scale(0); opacity: 1; }
   60% { opacity: 0.8; }
   100% { transform: scale(1); opacity: 0; }
-}
-
-/* Ben 10 omnitrix pulse animation */
-@keyframes omnitrix-pulse {
-  0%, 100% { box-shadow: 0 0 8px hsl(140 100% 42% / 0.3); }
-  50% { box-shadow: 0 0 20px hsl(140 100% 42% / 0.5), 0 0 40px hsl(140 100% 42% / 0.2); }
-}
-
-:root.theme-benten .shadow-theme-sm {
-  animation: omnitrix-pulse 3s ease-in-out infinite;
-  animation-play-state: paused;
-}
-:root.theme-benten .shadow-theme-sm:hover {
-  animation-play-state: running;
 }
