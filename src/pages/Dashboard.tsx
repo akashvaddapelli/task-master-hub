@@ -15,15 +15,13 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
-  const { theme, branding } = useTheme();
+  const { branding } = useTheme();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "pending" | "completed">("all");
-
-  const isVenom = theme === "venom";
 
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["tasks"],
@@ -71,39 +69,32 @@ const Dashboard = () => {
     pending: tasks.filter((t) => t.status === "pending").length,
   };
 
-  const statItems = isVenom
-    ? [
-        { label: "Total Hunts", emoji: "🕷️", color: "border-primary/30 bg-primary/5", value: stats.total },
-        { label: "Active", emoji: "💀", color: "border-warning/30 bg-warning/5", value: stats.pending },
-        { label: "Consumed", emoji: "☠️", color: "border-success/30 bg-success/5", value: stats.completed },
-      ]
-    : [
-        { label: "Total Missions", emoji: "🕸️", color: "border-primary/20 bg-primary/5", value: stats.total },
-        { label: "In Progress", emoji: "⚡", color: "border-warning/20 bg-warning/5", value: stats.pending },
-        { label: "Completed", emoji: "✅", color: "border-success/20 bg-success/5", value: stats.completed },
-      ];
+  const statItems = [
+    { label: "Total Tasks", color: "border-primary/20 bg-primary/5", value: stats.total },
+    { label: "In Progress", color: "border-warning/20 bg-warning/5", value: stats.pending },
+    { label: "Completed", color: "border-success/20 bg-success/5", value: stats.completed },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b-2 border-primary/20 bg-card/90 backdrop-blur-lg shadow-theme-sm">
+      <header className="sticky top-0 z-10 bg-card/80 glass shadow-theme-sm">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2.5">
             <ThemeToggle />
-            <Link to="/" className="text-xl font-bold text-foreground group wiggle">
-              {branding.emoji} {branding.name}
+            <Link to="/" className="text-xl font-bold text-foreground tracking-tight">
+              {branding.name}
             </Link>
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
-              {isVenom ? `Host: ${user?.email?.split("@")[0]}` : `Hey, ${user?.email?.split("@")[0]}!`}
-              {isVenom ? " 🕷️" : " 🕸️"}
+              {user?.email?.split("@")[0]}
             </span>
             <Button
               variant="outline"
               size="icon"
               onClick={signOut}
-              className="rounded-full border-2 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 active:scale-95 transition-all duration-200"
+              className="rounded-full border hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 active:scale-95 transition-all duration-200"
             >
               <LogOut className="h-4 w-4" />
             </Button>
@@ -114,13 +105,10 @@ const Dashboard = () => {
       <main className="container max-w-4xl py-8 px-4 sm:px-6">
         {/* Page Title */}
         <div className="mb-8 animate-fade-in">
-          <div className="flex items-center gap-3 mb-1">
-            <span className="text-3xl">{branding.emoji}</span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-              {isVenom ? "Hunt Control" : "Mission Control"}
-            </h1>
-          </div>
-          <p className="text-muted-foreground ml-12">{branding.tagline}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+            Dashboard
+          </h1>
+          <p className="text-muted-foreground mt-1">{branding.tagline}</p>
         </div>
 
         {/* Stats */}
@@ -128,12 +116,11 @@ const Dashboard = () => {
           {statItems.map((s, i) => (
             <div
               key={s.label}
-              className={`rounded-2xl border-2 ${s.color} p-5 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in`}
+              className={`rounded-2xl border ${s.color} p-5 text-center shadow-theme-sm hover-lift cursor-default animate-fade-in`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
-              <div className="text-3xl mb-1">{s.emoji}</div>
-              <p className="text-3xl font-black text-foreground">{s.value}</p>
-              <p className="text-sm font-semibold text-muted-foreground mt-1">{s.label}</p>
+              <p className="text-3xl font-extrabold text-foreground">{s.value}</p>
+              <p className="text-sm font-medium text-muted-foreground mt-1">{s.label}</p>
             </div>
           ))}
         </div>
@@ -147,18 +134,18 @@ const Dashboard = () => {
                 placeholder={branding.searchPlaceholder}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 h-11 rounded-full border-2 shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
+                className="pl-10 h-11 rounded-full border shadow-theme-sm focus:shadow-theme-md transition-shadow duration-200"
               />
             </div>
             <Select value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
-              <SelectTrigger className="w-40 h-11 rounded-full border-2 shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
+              <SelectTrigger className="w-40 h-11 rounded-full border shadow-theme-sm hover:shadow-theme-md transition-shadow duration-200">
                 <ListFilter className="mr-2 h-4 w-4" />
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="shadow-theme-lg rounded-xl">
-                <SelectItem value="all">{isVenom ? "All Hunts" : "All Missions"}</SelectItem>
-                <SelectItem value="pending">{isVenom ? "Active 💀" : "Active ⚡"}</SelectItem>
-                <SelectItem value="completed">{isVenom ? "Consumed ☠️" : "Done ✅"}</SelectItem>
+                <SelectItem value="all">All Tasks</SelectItem>
+                <SelectItem value="pending">In Progress</SelectItem>
+                <SelectItem value="completed">Completed</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -166,7 +153,7 @@ const Dashboard = () => {
             onClick={() => { setEditingTask(null); setDialogOpen(true); }}
             className="h-11 px-6 shadow-theme-md hover-glow press-effect rounded-full text-base"
           >
-            <Plus className="mr-2 h-5 w-5" /> New {branding.missionWord}
+            <Plus className="mr-2 h-5 w-5" /> New Task
           </Button>
         </div>
 
@@ -177,8 +164,7 @@ const Dashboard = () => {
             <p className="text-muted-foreground font-medium">{branding.loadingText}</p>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="rounded-2xl border-2 border-dashed border-primary/30 bg-card p-16 text-center shadow-theme-sm animate-fade-in">
-            <div className="text-6xl mb-4">{branding.emptyEmoji}</div>
+          <div className="rounded-2xl border-2 border-dashed border-muted bg-card p-16 text-center shadow-theme-sm animate-fade-in">
             <h3 className="text-xl font-bold text-foreground">{branding.emptyTitle}</h3>
             <p className="mt-2 text-muted-foreground">{branding.emptyDescription}</p>
             <Button
