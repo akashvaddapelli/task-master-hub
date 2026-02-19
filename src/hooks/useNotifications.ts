@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 
 export interface Notification {
   id: string;
@@ -17,6 +17,7 @@ export interface Notification {
 export function useNotifications() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const shownNotificationIds = useRef<Set<string>>(new Set());
 
   const { data: notifications = [], isLoading } = useQuery({
     queryKey: ["notifications"],
@@ -30,7 +31,7 @@ export function useNotifications() {
       return data as Notification[];
     },
     enabled: !!user,
-    refetchInterval: 30000, // Poll every 30s
+    refetchInterval: 15000, // Poll every 15s for faster pickup
   });
 
   const unreadCount = notifications.filter((n) => !n.is_read).length;
@@ -80,17 +81,21 @@ export function useNotifications() {
   useEffect(() => {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
     
-    const latestUnread = notifications.find((n) => !n.is_read);
-    if (!latestUnread) return;
-
-    // Only show if created in last 60s (fresh)
-    const age = Date.now() - new Date(latestUnread.created_at).getTime();
-    if (age < 60000) {
-      new window.Notification(latestUnread.title, {
-        body: latestUnread.message,
-        icon: "/favicon.ico",
-        tag: latestUnread.id, // Prevent duplicates
-      });
+    const unreadNotifications = notifications.filter((n) => !n.is_read);
+    
+    for (const n of unreadNotifications) {
+      if (shownNotificationIds.current.has(n.id)) continue;
+      
+      // Show if created in last 6 minutes (covers cron 5min + polling 15s)
+      const age = Date.now() - new Date(n.created_at).getTime();
+      if (age < 360000) {
+        shownNotificationIds.current.add(n.id);
+        new window.Notification(n.title, {
+          body: n.message,
+          icon: "/favicon.ico",
+          tag: n.id,
+        });
+      }
     }
   }, [notifications]);
 
