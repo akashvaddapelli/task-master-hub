@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,343 +6,251 @@
 
 @layer base {
   /* ═══════════════════════════════════════════
-     VENOM THEME — Pure darkness, symbiote tendrils, purple glow
+     LIGHT THEME — Pure white, soft shadows, warm & clean
      ═══════════════════════════════════════════ */
   :root {
-    --background: 270 20% 4%;
-    --foreground: 270 20% 90%;
-    --card: 270 15% 8%;
-    --card-foreground: 270 20% 90%;
-    --popover: 270 15% 8%;
-    --popover-foreground: 270 20% 90%;
-    --primary: 275 80% 55%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 220 90% 56%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 30% 15%;
-    --secondary-foreground: 270 20% 85%;
-    --muted: 270 12% 14%;
-    --muted-foreground: 270 15% 50%;
-    --accent: 300 70% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 65% 45%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 220 14% 93%;
+    --accent-foreground: 0 0% 8%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 270 15% 16%;
-    --input: 270 15% 14%;
-    --ring: 275 80% 55%;
-    --radius: 0.625rem;
-    --success: 160 70% 40%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 220 90% 56%;
+    --radius: 0.75rem;
+    --success: 152 69% 41%;
     --success-foreground: 0 0% 100%;
-    --warning: 45 85% 50%;
+    --warning: 38 92% 50%;
     --warning-foreground: 0 0% 0%;
-    --shadow-sm: 0 2px 8px 0 hsl(275 80% 55% / 0.08), 0 1px 3px -1px hsl(0 0% 0% / 0.5);
-    --shadow-md: 0 4px 16px -2px hsl(275 80% 55% / 0.12), 0 2px 6px -2px hsl(0 0% 0% / 0.5);
-    --shadow-lg: 0 10px 30px -5px hsl(275 80% 55% / 0.18), 0 4px 10px -4px hsl(0 0% 0% / 0.6);
-    --shadow-xl: 0 20px 50px -8px hsl(275 80% 55% / 0.25), 0 8px 16px -6px hsl(0 0% 0% / 0.6);
-    --sidebar-background: 270 15% 6%;
-    --sidebar-foreground: 270 20% 90%;
-    --sidebar-primary: 275 80% 55%;
+
+    --shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.04);
+    --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.06), 0 1px 2px -1px hsl(0 0% 0% / 0.06);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.07), 0 2px 4px -2px hsl(0 0% 0% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.08), 0 4px 6px -4px hsl(0 0% 0% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.08), 0 8px 10px -6px hsl(0 0% 0% / 0.04);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.18);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 220 90% 56%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 12% 12%;
-    --sidebar-accent-foreground: 270 20% 90%;
-    --sidebar-border: 270 15% 16%;
-    --sidebar-ring: 275 80% 55%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 220 90% 56%;
   }
 
   /* ═══════════════════════════════════════════
-     SPIDERMAN THEME — Bright red & blue, heroic, like the suit
+     DARK THEME — Deep charcoal, elevated shadows, sleek
      ═══════════════════════════════════════════ */
-  :root.theme-spiderman {
-    --background: 220 60% 96%;
-    --foreground: 220 50% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 50% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 50% 12%;
-    --primary: 0 85% 50%;
+  :root.dark {
+    --background: 224 20% 6%;
+    --foreground: 210 20% 92%;
+    --card: 224 18% 10%;
+    --card-foreground: 210 20% 92%;
+    --popover: 224 18% 10%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 75% 52%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 40% 90%;
-    --muted-foreground: 220 25% 40%;
-    --accent: 220 80% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 45%;
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 210 20% 85%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 215 12% 50%;
+    --accent: 220 14% 18%;
+    --accent-foreground: 210 20% 92%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 40% 82%;
-    --input: 220 35% 88%;
-    --ring: 0 85% 50%;
-    --radius: 0.875rem;
-    --success: 140 65% 42%;
+    --border: 220 12% 17%;
+    --input: 220 12% 15%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+    --success: 152 69% 41%;
     --success-foreground: 0 0% 100%;
-    --warning: 35 95% 55%;
-    --warning-foreground: 35 90% 14%;
-    --shadow-sm: 0 2px 8px 0 hsl(0 85% 50% / 0.08), 0 1px 4px -1px hsl(220 60% 30% / 0.08);
-    --shadow-md: 0 4px 14px -2px hsl(0 85% 50% / 0.12), 0 2px 8px -2px hsl(220 60% 30% / 0.08);
-    --shadow-lg: 0 10px 28px -5px hsl(0 85% 50% / 0.16), 0 4px 12px -4px hsl(220 60% 30% / 0.1);
-    --shadow-xl: 0 20px 45px -8px hsl(0 85% 50% / 0.2), 0 8px 20px -6px hsl(220 60% 30% / 0.1);
-    --sidebar-background: 220 55% 94%;
-    --sidebar-foreground: 220 50% 12%;
-    --sidebar-primary: 0 85% 50%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+
+    --shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.15);
+    --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.25), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.35), 0 4px 6px -4px hsl(0 0% 0% / 0.25);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.6);
+
+    --sidebar-background: 224 18% 8%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 45% 88%;
-    --sidebar-accent-foreground: 220 50% 12%;
-    --sidebar-border: 220 40% 82%;
-    --sidebar-ring: 0 85% 50%;
+    --sidebar-accent: 220 12% 14%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 12% 17%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
-/* ═══════════════════════════════════════════
-   PER-THEME FONT FAMILIES
-   ═══════════════════════════════════════════ */
 @layer base {
   * {
     @apply border-border;
   }
 
   html {
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Venom — dark, heavy, menacing */
-  :root:not(.theme-spiderman) body {
-    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-    letter-spacing: 0.01em;
-  }
-  :root:not(.theme-spiderman) h1,
-  :root:not(.theme-spiderman) h2,
-  :root:not(.theme-spiderman) h3 {
-    font-family: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  /* Spiderman — bold, energetic, heroic */
-  :root.theme-spiderman body {
-    font-family: 'Rajdhani', 'Inter', system-ui, sans-serif;
-    letter-spacing: 0.015em;
-  }
-  :root.theme-spiderman h1,
-  :root.theme-spiderman h2,
-  :root.theme-spiderman h3 {
-    font-family: 'Bebas Neue', 'Rajdhani', system-ui, sans-serif;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 /* ═══════════════════════════════════════════
-   PER-THEME BACKGROUND TEXTURES
+   CARD & SURFACE STYLES
    ═══════════════════════════════════════════ */
 
-/* Venom — dark symbiote tendrils / organic noise */
-:root:not(.theme-spiderman) .min-h-screen {
-  background-image: 
-    radial-gradient(ellipse 120px 80px at 15% 25%, hsl(275 80% 55% / 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 80px 120px at 80% 70%, hsl(300 70% 50% / 0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 100px 60px at 60% 10%, hsl(275 80% 55% / 0.03) 0%, transparent 70%);
+/* Light — pure white cards with soft shadow */
+:root:not(.dark) .bg-card {
+  box-shadow: var(--shadow-sm);
+  border-color: hsl(0 0% 0% / 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+:root:not(.dark) .bg-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: hsl(0 0% 0% / 0.1);
 }
 
-/* Spiderman — web-like diagonal pattern on light blue bg */
-:root.theme-spiderman .min-h-screen {
-  background-image: 
-    linear-gradient(30deg, hsl(0 85% 50% / 0.04) 1px, transparent 1px),
-    linear-gradient(-30deg, hsl(0 85% 50% / 0.04) 1px, transparent 1px),
-    radial-gradient(ellipse 150px 100px at 80% 20%, hsl(220 75% 52% / 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 120px 80px at 20% 80%, hsl(0 85% 50% / 0.06) 0%, transparent 70%);
-  background-size: 30px 30px, 30px 30px, 100% 100%, 100% 100%;
+/* Dark — elevated cards with deeper shadow */
+:root.dark .bg-card {
+  box-shadow: var(--shadow-md), 0 0 0 1px hsl(220 12% 17% / 0.5);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+:root.dark .bg-card:hover {
+  box-shadow: var(--shadow-xl), 0 0 0 1px hsl(217 91% 60% / 0.1);
 }
 
 /* ═══════════════════════════════════════════
-   PER-THEME HOVER & INTERACTION OVERRIDES
+   HOVER & INTERACTION EFFECTS
    ═══════════════════════════════════════════ */
 
-/* --- Venom hover: menacing scale + purple glow --- */
-:root:not(.theme-spiderman) .hover-lift:hover {
-  transform: translateY(-3px) scale(1.015);
-  box-shadow: var(--shadow-lg), 0 0 20px hsl(275 80% 55% / 0.15);
+/* Light hover — clean lift with soft shadow bloom */
+:root:not(.dark) .hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
-:root:not(.theme-spiderman) .hover-lift:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 0 10px hsl(275 80% 55% / 0.25);
-}
-:root:not(.theme-spiderman) .hover-glow:hover {
-  box-shadow: 0 0 24px hsl(275 80% 55% / 0.4), 0 0 48px hsl(275 80% 55% / 0.15);
-}
-:root:not(.theme-spiderman) .hover-glow:active {
-  box-shadow: 0 0 16px hsl(275 80% 55% / 0.5), 0 0 32px hsl(275 80% 55% / 0.2);
-}
-
-/* Venom — neon border glow on cards */
-:root:not(.theme-spiderman) .bg-card {
-  border-color: hsl(275 80% 55% / 0.12);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-:root:not(.theme-spiderman) .bg-card:hover {
-  border-color: hsl(275 80% 55% / 0.3);
-}
-
-/* --- Spiderman hover: heroic lift + red glow --- */
-:root.theme-spiderman .hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg), 0 0 20px hsl(0 85% 50% / 0.15);
-}
-:root.theme-spiderman .hover-lift:active {
+:root:not(.dark) .hover-lift:active {
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
-:root.theme-spiderman .hover-glow:hover {
-  box-shadow: 0 0 24px hsl(0 85% 50% / 0.35), 0 0 8px hsl(220 80% 55% / 0.2);
+
+/* Dark hover — lift with subtle blue glow */
+:root.dark .hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl), 0 0 20px hsl(217 91% 60% / 0.08);
 }
-:root.theme-spiderman .hover-glow:active {
-  box-shadow: 0 0 16px hsl(0 85% 50% / 0.4);
+:root.dark .hover-lift:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Spiderman — card glow */
-:root.theme-spiderman .bg-card {
-  border-color: hsl(0 85% 50% / 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+/* Glow effects */
+:root:not(.dark) .hover-glow:hover {
+  box-shadow: 0 0 20px hsl(220 90% 56% / 0.15), var(--shadow-lg);
 }
-:root.theme-spiderman .bg-card:hover {
-  border-color: hsl(0 85% 50% / 0.25);
-  box-shadow: var(--shadow-md), 0 0 12px hsl(0 85% 50% / 0.08);
+:root:not(.dark) .hover-glow:active {
+  box-shadow: 0 0 12px hsl(220 90% 56% / 0.2);
 }
 
-/* ═══════════════════════════════════════════
-   PER-THEME BORDER STYLES
-   ═══════════════════════════════════════════ */
-
-/* Venom — thin borders, angular */
-:root:not(.theme-spiderman) .border-2 {
-  border-width: 1px;
+:root.dark .hover-glow:hover {
+  box-shadow: 0 0 24px hsl(217 91% 60% / 0.2), 0 0 48px hsl(217 91% 60% / 0.06);
 }
-:root:not(.theme-spiderman) .border-l-4 {
-  border-left-width: 3px;
-}
-:root:not(.theme-spiderman) .rounded-2xl {
-  border-radius: 0.625rem;
-}
-:root:not(.theme-spiderman) .rounded-3xl {
-  border-radius: 0.75rem;
-}
-
-/* Spiderman — rounded, bold, heroic borders */
-:root.theme-spiderman .rounded-2xl {
-  border-radius: 0.875rem;
-}
-:root.theme-spiderman .border-2 {
-  border-width: 2px;
-  border-style: solid;
+:root.dark .hover-glow:active {
+  box-shadow: 0 0 16px hsl(217 91% 60% / 0.25);
 }
 
 /* ═══════════════════════════════════════════
-   PER-THEME BUTTON OVERRIDES
+   BUTTON OVERRIDES
    ═══════════════════════════════════════════ */
 
-/* Venom — sharp, angular buttons with purple glow */
-:root:not(.theme-spiderman) button.rounded-full,
-:root:not(.theme-spiderman) a.rounded-full,
-:root:not(.theme-spiderman) .rounded-full:not([class*="animate-spin"]) {
-  border-radius: 0.5rem;
+:root:not(.dark) .bg-primary {
+  box-shadow: var(--shadow-md), 0 0 0 0 hsl(220 90% 56% / 0);
+  transition: all 0.2s ease;
 }
-:root:not(.theme-spiderman) .bg-primary {
-  text-shadow: 0 0 10px hsl(275 80% 55% / 0.5);
+:root:not(.dark) .bg-primary:hover {
+  box-shadow: var(--shadow-lg), 0 0 16px hsl(220 90% 56% / 0.2);
+  filter: brightness(1.05);
 }
-:root:not(.theme-spiderman) .bg-primary:hover {
-  box-shadow: 0 0 20px hsl(275 80% 55% / 0.4), 0 0 40px hsl(275 80% 55% / 0.15);
+:root:not(.dark) .bg-primary:active {
+  box-shadow: var(--shadow-sm);
+  filter: brightness(0.95);
 }
 
-/* Spiderman — web-styled buttons */
-:root.theme-spiderman .bg-primary {
-  text-shadow: 0 0 8px hsl(0 85% 50% / 0.4);
+:root.dark .bg-primary {
+  box-shadow: var(--shadow-lg), 0 0 8px hsl(217 91% 60% / 0.15);
+  transition: all 0.2s ease;
 }
-:root.theme-spiderman .bg-primary:hover {
-  box-shadow: 0 0 16px hsl(0 85% 50% / 0.35), 0 0 32px hsl(0 85% 50% / 0.1);
+:root.dark .bg-primary:hover {
+  box-shadow: var(--shadow-xl), 0 0 24px hsl(217 91% 60% / 0.25);
+  filter: brightness(1.1);
+}
+:root.dark .bg-primary:active {
+  box-shadow: var(--shadow-md);
+  filter: brightness(0.9);
 }
 
 /* ═══════════════════════════════════════════
-   PER-THEME HEADER BAR
+   HEADER BAR
    ═══════════════════════════════════════════ */
 
-/* Venom — pure dark with purple accent line */
-:root:not(.theme-spiderman) header.sticky {
-  background: linear-gradient(180deg, hsl(270 15% 5% / 0.97) 0%, hsl(270 15% 8% / 0.95) 100%);
-  border-bottom-color: hsl(275 80% 55% / 0.25);
-  border-bottom-width: 1px;
+:root:not(.dark) header.sticky {
+  background: hsl(0 0% 100% / 0.85);
+  border-bottom: 1px solid hsl(0 0% 0% / 0.06);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Spiderman — bright white/blue header with bold red accent */
-:root.theme-spiderman header.sticky {
-  background: linear-gradient(180deg, hsl(220 60% 97% / 0.97) 0%, hsl(0 0% 100% / 0.95) 100%);
-  border-bottom-color: hsl(0 85% 50% / 0.35);
-  border-bottom-width: 2px;
+:root.dark header.sticky {
+  background: hsl(224 18% 8% / 0.9);
+  border-bottom: 1px solid hsl(220 12% 17% / 0.6);
+  box-shadow: var(--shadow-md);
 }
 
 /* ═══════════════════════════════════════════
-   PER-THEME INPUT FOCUS
+   INPUT FOCUS
    ═══════════════════════════════════════════ */
 
-:root:not(.theme-spiderman) input:focus,
-:root:not(.theme-spiderman) textarea:focus {
-  box-shadow: 0 0 0 2px hsl(275 80% 55% / 0.2), 0 0 16px hsl(275 80% 55% / 0.1);
-  border-color: hsl(275 80% 55% / 0.5) !important;
+:root:not(.dark) input:focus,
+:root:not(.dark) textarea:focus {
+  box-shadow: 0 0 0 3px hsl(220 90% 56% / 0.1), var(--shadow-sm);
+  border-color: hsl(220 90% 56% / 0.4) !important;
 }
 
-:root.theme-spiderman input:focus,
-:root.theme-spiderman textarea:focus {
-  box-shadow: 0 0 0 2px hsl(0 85% 50% / 0.2), 0 0 12px hsl(0 85% 50% / 0.1);
-  border-color: hsl(0 85% 50% / 0.5) !important;
-}
-
-/* ═══════════════════════════════════════════
-   PER-THEME SPINNER / LOADING
-   ═══════════════════════════════════════════ */
-
-:root:not(.theme-spiderman) .animate-spin {
-  filter: drop-shadow(0 0 8px hsl(275 80% 55% / 0.5));
-}
-
-:root.theme-spiderman .animate-spin {
-  filter: drop-shadow(0 0 6px hsl(0 85% 50% / 0.5));
-}
-
-/* ═══════════════════════════════════════════
-   SYMBIOTE PULSE ANIMATION (Venom)
-   ═══════════════════════════════════════════ */
-@keyframes symbiote-pulse {
-  0%, 100% { box-shadow: 0 0 8px hsl(275 80% 55% / 0.2); }
-  50% { box-shadow: 0 0 24px hsl(275 80% 55% / 0.4), 0 0 48px hsl(300 70% 50% / 0.15); }
-}
-
-:root:not(.theme-spiderman) .shadow-theme-sm {
-  animation: symbiote-pulse 4s ease-in-out infinite;
-  animation-play-state: paused;
-}
-:root:not(.theme-spiderman) .shadow-theme-sm:hover {
-  animation-play-state: running;
-}
-
-/* Web swing pulse (Spiderman) */
-@keyframes web-pulse {
-  0%, 100% { box-shadow: 0 0 6px hsl(0 85% 50% / 0.15); }
-  50% { box-shadow: 0 0 16px hsl(0 85% 50% / 0.3), 0 0 32px hsl(220 80% 55% / 0.1); }
-}
-
-:root.theme-spiderman .shadow-theme-sm {
-  animation: web-pulse 3s ease-in-out infinite;
-  animation-play-state: paused;
-}
-:root.theme-spiderman .shadow-theme-sm:hover {
-  animation-play-state: running;
+:root.dark input:focus,
+:root.dark textarea:focus {
+  box-shadow: 0 0 0 3px hsl(217 91% 60% / 0.15), var(--shadow-md);
+  border-color: hsl(217 91% 60% / 0.5) !important;
 }
 
 /* ═══════════════════════════════════════════
    SHARED UTILITIES
    ═══════════════════════════════════════════ */
 @layer utilities {
+  .shadow-theme-xs {
+    box-shadow: var(--shadow-xs);
+  }
   .shadow-theme-sm {
     box-shadow: var(--shadow-sm);
   }
@@ -354,6 +262,9 @@
   }
   .shadow-theme-xl {
     box-shadow: var(--shadow-xl);
+  }
+  .shadow-theme-2xl {
+    box-shadow: var(--shadow-2xl);
   }
   .hover-lift {
     @apply transition-all duration-300 ease-out;
@@ -370,26 +281,20 @@
     @apply transition-all duration-300;
   }
   .hover-glow:hover {
-    box-shadow: 0 0 24px hsl(var(--primary) / 0.35);
+    box-shadow: 0 0 24px hsl(var(--primary) / 0.2);
   }
   .hover-glow:active {
-    box-shadow: 0 0 12px hsl(var(--primary) / 0.4);
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.25);
   }
   .press-effect {
     @apply transition-transform duration-150;
   }
   .press-effect:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
-  .wiggle:hover {
-    animation: wiggle 0.4s ease-in-out;
+  .glass {
+    backdrop-filter: blur(12px) saturate(1.5);
   }
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-2deg); }
-  75% { transform: rotate(2deg); }
 }
 
 @keyframes theme-ripple {

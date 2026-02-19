@@ -1,17 +1,14 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from "react";
 
-export type AnimeTheme = "venom" | "spiderman";
+export type ThemeMode = "light" | "dark";
 
 export interface ThemeBranding {
   name: string;
-  emoji: string;
   tagline: string;
   heroTagline: string;
   heroTitle: string;
   heroHighlight: string;
   heroDescription: string;
-  missionWord: string;
-  emptyEmoji: string;
   emptyTitle: string;
   emptyDescription: string;
   searchPlaceholder: string;
@@ -36,124 +33,79 @@ export interface ThemeBranding {
   featureTitles: string[];
 }
 
-const BRANDING: Record<AnimeTheme, ThemeBranding> = {
-  venom: {
-    name: "VenomTask",
-    emoji: "🕷️",
-    tagline: "We are the darkness.",
-    heroTagline: "The symbiote awakens...",
-    heroTitle: "Devour your tasks",
-    heroHighlight: "like Venom. 🖤",
-    heroDescription: "Unleash the symbiote within. No task escapes the darkness. We are productivity. We are Venom.",
-    missionWord: "Hunt",
-    emptyEmoji: "🌑",
-    emptyTitle: "The void is empty.",
-    emptyDescription: "The symbiote hungers. Create your first hunt to feed the darkness.",
-    searchPlaceholder: "Search the darkness... 🔍",
-    toastCreate: "🕷️ Hunt deployed. The symbiote feeds.",
-    toastUpdate: "🖤 Hunt recalibrated.",
-    toastDelete: "💀 Hunt consumed by the void.",
-    toastError: "Symbiote error! 🚨",
-    ctaMain: "Unleash the Symbiote 🖤",
-    ctaFirst: "Begin the Hunt",
-    ctaLogin: "Enter the Void 🕷️",
-    ctaRegister: "Bond with Symbiote 🖤",
-    cancelLabel: "Retreat",
-    saveLabel: "Unleash 🕷️",
-    updateLabel: "Evolve 🖤",
-    loginWelcome: "Welcome back, host.",
-    loginSubtext: "The symbiote remembers you.",
-    registerWelcome: "New host detected.",
-    registerSubtext: "Bond with the symbiote to begin operations.",
-    emailPlaceholder: "host@symbiote.com",
-    loadingText: "Symbiote syncing... 🕷️",
-    featureTitles: ["Symbiote Speed 🕷️", "Void Shield 🛡️", "Dark Tracker 📡"],
-    featureDescriptions: [
-      "Execute hunts at symbiote velocity. Nothing escapes.",
-      "Protected by living darkness. Impenetrable.",
-      "Track all hunts across the shadows. Total awareness.",
-    ],
-  },
-  spiderman: {
-    name: "SpiderTask",
-    emoji: "🕸️",
-    tagline: "With great power comes great productivity!",
-    heroTagline: "Your friendly neighborhood task manager!",
-    heroTitle: "Swing through tasks",
-    heroHighlight: "Spidey style! 🔴🔵",
-    heroDescription: "With great power comes great responsibility — and great task management! Swing into action and crush your to-do list, hero!",
-    missionWord: "Mission",
-    emptyEmoji: "🕸️",
-    emptyTitle: "No missions on the radar!",
-    emptyDescription: "Even Spidey needs a mission! Create your first one and save the day.",
-    searchPlaceholder: "Scan for missions... 🔍",
-    toastCreate: "🕸️ Mission launched! Go get 'em, tiger!",
-    toastUpdate: "⚡ Mission upgraded!",
-    toastDelete: "💥 Mission completed & cleared!",
-    toastError: "Spidey-sense tingling! Something's wrong! 🚨",
-    ctaMain: "Swing Into Action! 🕸️",
-    ctaFirst: "Launch First Mission!",
-    ctaLogin: "Suit Up! 🔴",
-    ctaRegister: "Join the Web! 🕸️",
-    cancelLabel: "Stand down",
-    saveLabel: "Web it! 🕸️",
-    updateLabel: "Upgrade! ⚡",
-    loginWelcome: "Hey there, hero!",
-    loginSubtext: "Suit up and get back to saving the day.",
-    registerWelcome: "New hero incoming!",
-    registerSubtext: "Get your web-shooters ready. The city needs you.",
-    emailPlaceholder: "hero@dailybugle.com",
-    loadingText: "Web-swinging to data... 🕸️",
-    featureTitles: ["Web Speed ⚡", "Spidey Shield 🛡️", "Hero Tracker 📊"],
-    featureDescriptions: [
-      "Faster than a web-swing across Manhattan!",
-      "Your data is protected by spider-sense. Unbreakable.",
-      "Track all missions like Spidey tracks villains. Zero blind spots.",
-    ],
-  },
+const BRANDING: ThemeBranding = {
+  name: "TaskFlow",
+  tagline: "Organize. Focus. Achieve.",
+  heroTagline: "Your personal productivity companion",
+  heroTitle: "Get things done,",
+  heroHighlight: "beautifully.",
+  heroDescription: "A minimal, elegant task manager designed to help you stay focused and accomplish more with less clutter.",
+  emptyTitle: "Nothing here yet",
+  emptyDescription: "Create your first task and start building momentum.",
+  searchPlaceholder: "Search tasks...",
+  toastCreate: "Task created successfully",
+  toastUpdate: "Task updated",
+  toastDelete: "Task deleted",
+  toastError: "Something went wrong",
+  ctaMain: "Get Started Free",
+  ctaFirst: "Create Your First Task",
+  ctaLogin: "Sign In",
+  ctaRegister: "Create Account",
+  cancelLabel: "Cancel",
+  saveLabel: "Create",
+  updateLabel: "Save Changes",
+  loginWelcome: "Welcome back",
+  loginSubtext: "Sign in to continue where you left off.",
+  registerWelcome: "Create your account",
+  registerSubtext: "Start organizing your tasks in seconds.",
+  emailPlaceholder: "you@example.com",
+  loadingText: "Loading...",
+  featureTitles: ["Lightning Fast", "Beautifully Simple", "Always in Sync"],
+  featureDescriptions: [
+    "Built for speed. Create, update, and organize tasks instantly.",
+    "A clean interface that gets out of your way so you can focus.",
+    "Your tasks are securely saved and available on any device.",
+  ],
 };
 
-const THEME_ORDER: AnimeTheme[] = ["venom", "spiderman"];
-const STORAGE_KEY = "hero-theme";
+const STORAGE_KEY = "theme-mode";
 
 interface ThemeContextType {
-  theme: AnimeTheme;
+  theme: ThemeMode;
   branding: ThemeBranding;
-  cycleTheme: () => void;
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const getStoredTheme = (): AnimeTheme => {
+const getStoredTheme = (): ThemeMode => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && THEME_ORDER.includes(stored as AnimeTheme)) return stored as AnimeTheme;
+    if (stored === "light" || stored === "dark") return stored;
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
   } catch {}
-  return "venom";
+  return "light";
 };
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<AnimeTheme>(getStoredTheme);
+  const [theme, setTheme] = useState<ThemeMode>(getStoredTheme);
 
   useEffect(() => {
     const root = document.documentElement;
-    THEME_ORDER.forEach((t) => root.classList.remove(`theme-${t}`));
-    root.classList.add(`theme-${theme}`);
+    root.classList.remove("dark");
+    if (theme === "dark") root.classList.add("dark");
     localStorage.setItem(STORAGE_KEY, theme);
-    document.title = BRANDING[theme].name;
+    document.title = "TaskFlow";
   }, [theme]);
 
-  const cycleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const idx = THEME_ORDER.indexOf(prev);
-      return THEME_ORDER[(idx + 1) % THEME_ORDER.length];
-    });
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }, []);
 
-  const branding = useMemo(() => BRANDING[theme], [theme]);
+  const value = useMemo(() => ({ theme, branding: BRANDING, toggleTheme }), [theme, toggleTheme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, branding, cycleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

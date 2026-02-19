@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
-        mono: ["Rajdhani", "monospace"],
+        sans: ["Inter", "DM Sans", "system-ui", "sans-serif"],
+        heading: ["DM Sans", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

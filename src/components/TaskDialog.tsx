@@ -6,8 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { Flag, CalendarDays, Type, AlignLeft, Rocket } from "lucide-react";
-import { useTheme, AnimeTheme } from "@/contexts/ThemeContext";
+import { Flag, CalendarDays, Type, AlignLeft, Plus } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface TaskDialogProps {
   open: boolean;
@@ -17,13 +17,8 @@ interface TaskDialogProps {
   loading?: boolean;
 }
 
-const priorityLabels: Record<AnimeTheme, { low: string; medium: string; high: string }> = {
-  venom: { low: "🌑 Dormant", medium: "🕷️ Hostile", high: "💀 LETHAL" },
-  spiderman: { low: "🔵 Patrol", medium: "⚡ Active", high: "🔴 CRITICAL" },
-};
-
 const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogProps) => {
-  const { theme, branding } = useTheme();
+  const { branding } = useTheme();
   const [title, setTitle] = useState(task?.title ?? "");
   const [description, setDescription] = useState(task?.description ?? "");
   const [priority, setPriority] = useState<"low" | "medium" | "high">(task?.priority ?? "medium");
@@ -44,75 +39,58 @@ const TaskDialog = ({ open, onOpenChange, task, onSave, loading }: TaskDialogPro
     onOpenChange(open);
   };
 
-  const labels = priorityLabels[theme];
-  const isVenom = theme === "venom";
-  const titleLabel = isVenom ? "Target" : "Mission Name";
-  const detailLabel = isVenom ? "Intel" : "Details";
-  const priorityLabel = isVenom ? "Threat Level" : "Priority";
-  const deadlineLabel = "Deadline";
-
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-lg md:max-w-xl w-[95vw] shadow-theme-xl rounded-2xl p-0 overflow-hidden animate-bounce-in border-2 border-primary/20">
-        <div className="bg-gradient-to-r from-primary/10 via-secondary/30 to-accent/10 border-b-2 border-primary/10 px-5 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
+      <DialogContent className="sm:max-w-lg md:max-w-xl w-[95vw] shadow-theme-xl rounded-2xl p-0 overflow-hidden animate-scale-in border">
+        <div className="bg-primary/5 border-b px-5 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
           <DialogHeader>
-            <div className="flex items-center gap-3 mb-1">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 shadow-theme-sm">
-                <span className="text-xl">{task ? "✏️" : branding.emoji}</span>
-              </div>
-              <div>
-                <DialogTitle className="text-lg sm:text-xl font-bold">
-                  {task ? `Edit ${branding.missionWord}` : `New ${branding.missionWord}`}
-                </DialogTitle>
-                <DialogDescription className="text-sm mt-0.5 font-medium">
-                  {task
-                    ? isVenom ? "Recalibrate hunt parameters." : "Update your mission details."
-                    : isVenom ? "Configure new hunt parameters." : "What's the next mission, hero?"
-                  }
-                </DialogDescription>
-              </div>
-            </div>
+            <DialogTitle className="text-lg sm:text-xl font-bold">
+              {task ? "Edit Task" : "New Task"}
+            </DialogTitle>
+            <DialogDescription className="text-sm mt-0.5">
+              {task ? "Update your task details." : "What do you need to get done?"}
+            </DialogDescription>
           </DialogHeader>
         </div>
 
         <form onSubmit={handleSubmit} className="px-5 py-4 sm:px-6 sm:py-5 space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="title" className="text-sm font-bold flex items-center gap-2">
-              <Type className="h-4 w-4 text-primary" /> {titleLabel}
+            <Label htmlFor="title" className="text-sm font-semibold flex items-center gap-2">
+              <Type className="h-4 w-4 text-primary" /> Title
             </Label>
-            <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={isVenom ? "Enter target designation..." : "What needs to be done?"} required className="h-10 text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200" />
+            <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="What needs to be done?" required className="h-10 text-sm rounded-xl border shadow-theme-sm focus:shadow-theme-md transition-all duration-200" />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="description" className="text-sm font-bold flex items-center gap-2">
-              <AlignLeft className="h-4 w-4 text-primary" /> {detailLabel}
+            <Label htmlFor="description" className="text-sm font-semibold flex items-center gap-2">
+              <AlignLeft className="h-4 w-4 text-primary" /> Description
             </Label>
-            <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={isVenom ? "Provide hunt intel..." : "Add mission details..."} rows={3} className="text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200 resize-none" />
+            <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Add some details..." rows={3} className="text-sm rounded-xl border shadow-theme-sm focus:shadow-theme-md transition-all duration-200 resize-none" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label className="text-sm font-bold flex items-center gap-2">
-                <Flag className="h-4 w-4 text-primary" /> {priorityLabel}
+              <Label className="text-sm font-semibold flex items-center gap-2">
+                <Flag className="h-4 w-4 text-primary" /> Priority
               </Label>
               <Select value={priority} onValueChange={(v) => setPriority(v as "low" | "medium" | "high")}>
-                <SelectTrigger className="h-10 text-sm rounded-xl border-2 shadow-theme-sm hover:shadow-theme-md transition-all duration-200"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="h-10 text-sm rounded-xl border shadow-theme-sm hover:shadow-theme-md transition-all duration-200"><SelectValue /></SelectTrigger>
                 <SelectContent className="shadow-theme-lg rounded-xl">
-                  <SelectItem value="low" className="py-2 cursor-pointer rounded-lg"><span className="flex items-center gap-2">{labels.low}</span></SelectItem>
-                  <SelectItem value="medium" className="py-2 cursor-pointer rounded-lg"><span className="flex items-center gap-2">{labels.medium}</span></SelectItem>
-                  <SelectItem value="high" className="py-2 cursor-pointer rounded-lg"><span className="flex items-center gap-2">{labels.high}</span></SelectItem>
+                  <SelectItem value="low" className="py-2 cursor-pointer rounded-lg">Low</SelectItem>
+                  <SelectItem value="medium" className="py-2 cursor-pointer rounded-lg">Medium</SelectItem>
+                  <SelectItem value="high" className="py-2 cursor-pointer rounded-lg">High</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="due_date" className="text-sm font-bold flex items-center gap-2">
-                <CalendarDays className="h-4 w-4 text-primary" /> {deadlineLabel}
+              <Label htmlFor="due_date" className="text-sm font-semibold flex items-center gap-2">
+                <CalendarDays className="h-4 w-4 text-primary" /> Deadline
               </Label>
-              <Input id="due_date" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="h-10 text-sm rounded-xl border-2 shadow-theme-sm focus:shadow-theme-md focus:border-primary/50 transition-all duration-200" />
+              <Input id="due_date" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="h-10 text-sm rounded-xl border shadow-theme-sm focus:shadow-theme-md transition-all duration-200" />
             </div>
           </div>
-          <DialogFooter className="pt-3 border-t-2 border-primary/10 gap-3">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="h-10 px-5 text-sm rounded-full border-2 hover-lift press-effect">{branding.cancelLabel}</Button>
+          <DialogFooter className="pt-3 border-t gap-3">
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="h-10 px-5 text-sm rounded-full border hover-lift press-effect">{branding.cancelLabel}</Button>
             <Button type="submit" disabled={loading || !title.trim()} className="h-10 px-6 text-sm rounded-full hover-glow press-effect shadow-theme-md">
-              <Rocket className="mr-2 h-4 w-4" />
+              <Plus className="mr-2 h-4 w-4" />
               {loading ? "Saving…" : task ? branding.updateLabel : branding.saveLabel}
             </Button>
           </DialogFooter>
